@@ -1,3 +1,6 @@
+import "../styles/site.css";
+import "../styles/index.css";
+
 export default function HomePage() {
   return (
     <>
@@ -7,7 +10,7 @@ export default function HomePage() {
         <div className="grid-container">
           <div className="col-span-4 col-start-1 hero-cup-wrapper">
             <img
-              src="/images/cup test.png"
+              src="/images/cup.png"
               alt="Taça Sertã Cup"
               className="hero-cup-img"
             />
@@ -16,7 +19,7 @@ export default function HomePage() {
           <div className="col-span-6 col-start-6 md:col-span-5 md:col-start-4 sm:col-span-4 sm:col-start-1 hero-text">
             <div className="hero-title">IV SERTÃ CUP</div>
 
-            <div className="hero-subtitle">28/29 JUNHO</div>
+            <div className="hero-subtitle">24, 25, 26 e 27 JUNHO</div>
 
             <div className="cta-wrapper">
               <a className="cta" href="/torneio?tab=calendario">
