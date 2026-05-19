@@ -9,27 +9,12 @@ export default function Patrocinadores() {
   useEffect(() => {
 
     const data = [
-      "freguesia_serta.png",
-      "palser.png",
-      "pinhoser.png",
-      "stand_frigi.png",
-      "joao_maia.png",
-      "freguesia_cernache.png",
-      "ricardo_ribeiro_pinturas.png",
-      "nuno_flor.png",
-      "opticalia.png",
-      "pronto_vestir_farinha.png",
-      "rf_engenharia.png",
-      "serta_municipio.png",
-      "sma.png",
-      "chicos_ferro.png",
-      "jimafer.png",
-      "focar_momentos.png",
-      "laranjeira_lopes.png",
-      "auto_acessorios.png",
-      "as_consulting.png",
-      "confeitaria_artesenal.png"
-      
+      "Sertanense ICOS logo.png",
+      "S. Benfica C.B..png",
+      "União Pombal logo.png",
+      "U.D. Batalha logo.png",
+      "Desportivo C.B. logo.png",
+      "Alenquer e Benfica logo.png"      
     ];
 
     setLogos(data);

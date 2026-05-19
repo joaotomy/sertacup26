@@ -19,7 +19,7 @@ export default function HomePage() {
           <div className="col-span-6 col-start-6 md:col-span-5 md:col-start-4 sm:col-span-4 sm:col-start-1 hero-text">
             <div className="hero-title">IV SERTÃ CUP</div>
 
-            <div className="hero-subtitle">24, 25, 26 e 27 JUNHO</div>
+            <div className="hero-subtitle">25, 26, 27 e 28 JUNHO</div>
 
             <div className="cta-wrapper">
               <a className="cta" href="/torneio?tab=calendario">

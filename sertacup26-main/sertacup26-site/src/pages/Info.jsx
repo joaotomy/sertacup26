@@ -7,15 +7,49 @@ export default function Info() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch("/images/teams")
-      .then(() => {
-        const files = [
-          // React can’t read server folders like ASP.NET
-          // so you either hardcode or fetch from API
-        ];
-        setTeams(files);
-      });
-  }, []);
+  const files = [
+    "Alenquer e Benfica logo.png",
+    "Amigos Urgeses 1 logo.png",
+    "Amigos Urgeses 2 logo.png",
+    "Avelarense FEM logo.png",
+    "B.E.F.P.G. logo.png",
+    "Bragadense U12 logo.png",
+    "Bragadense U13 logo.png",
+    "C. U. Idanhense FEM logo.png",
+    "Desportivo C.B. logo.png",
+    "E.F. Tomar logo.png",
+    "E.F. Tomar.jpg",
+    "Fátima - A logo.png",
+    "Fátima - B logo.png",
+    "G. D. Ilha FEM logo.png",
+    "G.D. Ilha logo.png",
+    "logo.png",
+    "Moçarriense logo.png",
+    "Os Bucelenses logo.png",
+    "Os Lagartos logo.png",
+    "Ouriquense logo.png",
+    "Peniche logo.png",
+    "Ponte de Frielas logo.png",
+    "S. Abrantes e Benfica logo.png",
+    "S. Benfica C.B..png",
+    "S. Mascotelos logo.png",
+    "Sertanense ICOS logo.png",
+    "Sertanense SPC logo.png",
+    "U.D. Atalaiense logo.png",
+    "U.D. Batalha logo.png",
+    "U.D. Belmonte FEM logo.png",
+    "U.D. Belmonte logo.png",
+    "U.D. Chamusca logo.png",
+    "U.F.C.I. logo.png",
+    "União Pombal logo.png",
+    "União Tomar logo.png",
+    "Vieirense logo.png",
+    "Vilarregense F.C. logo.png",
+    "Vitória Sernache logo.png",
+];
+
+  setTeams(files);
+}, []);
 
   return (
     <>
@@ -25,7 +59,7 @@ export default function Info() {
 
         <div className="grid-container">
           <div className="horarios-dia">
-            <div className="dia-title">Dia 1</div>
+            <div className="dia-title">Quinta - 25 junho</div>
 
             <div className="hour-block">
               <div className="hour-title">9:00</div>
@@ -44,7 +78,7 @@ export default function Info() {
           </div>
 
           <div className="horarios-dia">
-            <div className="dia-title">Dia 2</div>
+            <div className="dia-title">Sexta - 26 junho</div>
 
             <div className="hour-block">
               <div className="hour-title">9:30 - 19:00</div>
@@ -63,11 +97,44 @@ export default function Info() {
           </div>
 
           <div className="horarios-dia">
+            <div className="dia-title">Sábado - 27 junho</div>
+
             <div className="hour-block">
-              <div className="hour-title">Durante todo o fim de semana</div>
-              <div>Atividades, comida e bebida</div>
+              <div className="hour-title">9:30 - 19:00</div>
+              <div>Jogos</div>
+            </div>
+
+            <div className="hour-block">
+              <div className="hour-title">15:00 - 18:00</div>
+              <div>Finais</div>
+            </div>
+
+            <div className="hour-block">
+              <div className="hour-title">19:00</div>
+              <div>Entrega de prémios</div>
             </div>
           </div>
+
+          <div className="horarios-dia">
+            <div className="dia-title">Domingo - 28 junho</div>
+
+            <div className="hour-block">
+              <div className="hour-title">9:30 - 19:00</div>
+              <div>Jogos</div>
+            </div>
+
+            <div className="hour-block">
+              <div className="hour-title">15:00 - 18:00</div>
+              <div>Finais</div>
+            </div>
+
+            <div className="hour-block">
+              <div className="hour-title">19:00</div>
+              <div>Entrega de prémios</div>
+            </div>
+          </div>
+
+
         </div>
       </section>
 
@@ -76,28 +143,6 @@ export default function Info() {
         <div className="info-title">CAMPOS</div>
 
         <div className="grid-container campos-grid">
-          <div className="campo-principal">
-            <img src="/images/campo-principal.jpg" alt="Campo principal" />
-          </div>
-
-          <div className="campo-slot">
-            <div className="campo-nome">Cernache</div>
-            <div className="campo-desc">3 Campos</div>
-          </div>
-
-          <div className="campo-slot">
-            <div className="campo-nome">Cabeçudo</div>
-            <div className="campo-desc">2 Campos</div>
-          </div>
-
-          <div className="campo-slot">
-            <div className="campo-nome">Sertã</div>
-            <div className="campo-desc">2 Campos</div>
-            <div className="campo-desc">
-              O CAMPO DA FINAL: DR MARQUES DOS SANTOS
-            </div>
-          </div>
-
           {[4, 5, 6, 7].map((i) => (
             <div key={i} className="campo-slot">
               Campo {i}
@@ -130,7 +175,9 @@ export default function Info() {
               A competição Sub-13 terá 32 equipas...
               <br />
               <br />• 8 grupos de 4 equipas
-              <br />• Fase seguinte com ligas diferentes
+              <br />• Fase seguinte com ligas diferentes: Liga dos Campeões, Liga Europa e Liga Conferência.
+              <br />• O primeiro e segundo classificado de cada grupo avançam para a Liga dos Campeões, o terceiro para a Liga Europa e o quarto para a Liga Conferência.
+              <br />• Nenhuma equipa é eliminada, todas têm a oportunidade de jogar até ao fim do torneio.
             </div>
           </div>
 
