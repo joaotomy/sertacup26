@@ -43,9 +43,7 @@ export default function Info() {
     "U.F.C.I. logo.png",
     "União Pombal logo.png",
     "União Tomar logo.png",
-    "Vieirense logo.png",
-    "Vilarregense F.C. logo.png",
-    "Vitória Sernache logo.png",
+    "Vieirense logo.png"
 ];
 
   setTeams(files);
