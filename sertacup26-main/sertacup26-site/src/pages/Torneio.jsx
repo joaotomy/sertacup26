@@ -304,7 +304,7 @@ function CalendarioTab() {
 
 function GruposTab() {
   return (
-    <div id="grupos" className="tab-content">
+    <div id="grupos" className="tab-content active">
       <div className="grid-container group-section">
         {[...grupos].sort((a, b) => a.Name.localeCompare(b.Name)).map(group => (
           <div key={group.Name} className="col-span-6 md:col-span-4 sm:col-span-4 group-block">
@@ -364,7 +364,7 @@ function FasesFinaisTab() {
   };
 
   return (
-    <div id="fases-finais" className="tab-content">
+    <div id="fases-finais" className="tab-content active">
       <div className="ff-section-title">
         <button onClick={() => scrollTo("champs")}>LIGA DOS CAMPEÕES</button>
         <button onClick={() => scrollTo("europa")}>LIGA EUROPA</button>

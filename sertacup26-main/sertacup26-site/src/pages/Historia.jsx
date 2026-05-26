@@ -21,7 +21,7 @@ export default function Historia() {
               <p>
                 Existia a vontade de criar um torneio de referência a nível
                 Distrital e Nacional, promovendo o concelho da Sertã e dando a
-                conhecer todo o seu potencial. Para tal o S.F.C. decidiu
+                conhecer todo o seu potencial. Para tal, o S.F.C. decidiu
                 organizar o Sertã Cup. Este evento visa proporcionar aos jovens
                 atletas a prática de futebol, promovendo o convívio entre
                 equipas, contribuindo para a sua formação desportiva e pessoal e
