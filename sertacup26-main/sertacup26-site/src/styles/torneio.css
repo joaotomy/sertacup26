@@ -47,6 +47,7 @@
     font-family: var(--font-regular);
     font-size: var(--font-size-body);
     height: auto;
+    margin-top: 80px;
 }
 
     .tab-content.active {

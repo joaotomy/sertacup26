@@ -55,23 +55,23 @@ export default function Historia() {
 
           <div className="vencedores-content">
             <div className="vencedor-box">
-              <div className="edicao">Iª</div>
+              <div className="edicao">I</div>
               <p>ESCOLA PEDRO ROMA</p>
             </div>
 
             <div className="vencedor-box">
-              <div className="edicao">IIª</div>
+              <div className="edicao">II</div>
               <p>SERTANENSE FC</p>
             </div>
 
             <div className="vencedor-box">
-              <div className="edicao">IIIª</div>
+              <div className="edicao">III</div>
               <p>ESCOLA BENFICA P.G</p>
             </div>
 
             <div className="vencedor-box">
-              <div className="edicao">IVª</div>
-              <p>???</p>
+              <div className="edicao">IV</div>
+              <p>UNIÃO DE POMBAL</p>
             </div>
           </div>
 

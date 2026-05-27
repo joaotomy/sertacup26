@@ -1,62 +1,60 @@
 import { useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import "../styles/torneio.css";
 
 // ─── Placeholder Data ────────────────────────────────────────────────────────
 
 const jogos = [
-  { Id: "1", equipa1: "Sertanense FC", equipa2: "Benfica CB", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-10T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "A", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: ["João Silva 12'", "Pedro Costa 34'"], MarcadoresEquipa2: ["Miguel Lopes 22'"] },
-  { Id: "2", equipa1: "União Pombal", equipa2: "Batalha FC", Estado: "Intervalo", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-10T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "A", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: ["Rui Faria 8'"], MarcadoresEquipa2: [] },
-  { Id: "3", equipa1: "Desportivo CB", equipa2: "Alenquer Benfica", Estado: "2ªP", golos_equipa1: "0", golos_equipa2: "0", horaPrevista: new Date("2026-05-10T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "12:25", Fase: "FASE DE GRUPOS", grupo: "B", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "4", equipa1: "Team Alpha", equipa2: "Team Beta", Estado: "Resultado Final", golos_equipa1: "3", golos_equipa2: "2", horaPrevista: new Date("2026-05-10T13:00:00"), hora_inicio: "13:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "B", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "5", equipa1: "Team Gamma", equipa2: "Team Delta", Estado: "1ªP", golos_equipa1: "1", golos_equipa2: "1", horaPrevista: new Date("2026-05-10T14:00:00"), hora_inicio: "14:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "C", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "6", equipa1: "Team Epsilon", equipa2: "Team Zeta", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-10T15:00:00"), hora_inicio: "15:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "C", Campo: "2", situacao_precaria: "", começado: false, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "7", equipa1: "Team A", equipa2: "Team B", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-11T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "1º/2º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "10:00" },
-  { Id: "8", equipa1: "Team C", equipa2: "Team D", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "2", horaPrevista: new Date("2026-05-11T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "2", situacao_precaria: "3º/4º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "11:00" },
-  { Id: "9", equipa1: "Team E", equipa2: "Team F", Estado: "Intervalo", golos_equipa1: "0", golos_equipa2: "1", horaPrevista: new Date("2026-05-11T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "12:00" },
-  { Id: "10", equipa1: "Team G", equipa2: "Team H", Estado: "2ªP", golos_equipa1: "2", golos_equipa2: "3", horaPrevista: new Date("2026-05-11T13:00:00"), hora_inicio: "13:00", hora_inicio_2parte: "13:25", Fase: "FASE FINAL", grupo: "0", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "13:00" },
-  { Id: "11", equipa1: "Team I", equipa2: "Team J", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-11T14:00:00"), hora_inicio: "14:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "", começado: false, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "14:00" },
-  { Id: "12", equipa1: "Team K", equipa2: "Team L", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-11T15:00:00"), hora_inicio: "15:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "2", situacao_precaria: "", começado: false, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "15:00" },
+  { Id: "1", equipa1: "Sertanense ICOS", equipa2: "Moçarriense", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-10T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "A", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: ["João Silva 12'", "Pedro Costa 34'"], MarcadoresEquipa2: ["Miguel Lopes 22'"] },
+  { Id: "2", equipa1: "B.E.F.P.G.", equipa2: "U.D. Belmonte", Estado: "Intervalo", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-10T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "A", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: ["Rui Faria 8'"], MarcadoresEquipa2: [] },
+  { Id: "3", equipa1: "Desportivo C.B.", equipa2: "E.F. Tomar", Estado: "2ªP", golos_equipa1: "0", golos_equipa2: "0", horaPrevista: new Date("2026-05-10T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "12:25", Fase: "FASE DE GRUPOS", grupo: "B", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "4", equipa1: "U.D. Atalaiense", equipa2: "Fátima - A", Estado: "Resultado Final", golos_equipa1: "3", golos_equipa2: "2", horaPrevista: new Date("2026-05-10T13:00:00"), hora_inicio: "13:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "B", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "5", equipa1: "Vieirense", equipa2: "Moçarriense", Estado: "1ªP", golos_equipa1: "1", golos_equipa2: "1", horaPrevista: new Date("2026-05-10T14:00:00"), hora_inicio: "14:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "C", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "6", equipa1: "Os Lagartos", equipa2: "Ouriquense", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-10T15:00:00"), hora_inicio: "15:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "C", Campo: "2", situacao_precaria: "", começado: false, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "7", equipa1: "Peniche", equipa2: "Sertanense SPC", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-11T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "1º/2º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "10:00" },
+  { Id: "8", equipa1: "U.D. Chamusca", equipa2: "G.D. Ilha", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "2", horaPrevista: new Date("2026-05-11T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "2", situacao_precaria: "3º/4º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "11:00" },
+  { Id: "9", equipa1: "Os Bucelenses", equipa2: "Vieirense", Estado: "Intervalo", golos_equipa1: "0", golos_equipa2: "1", horaPrevista: new Date("2026-05-11T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "12:00" },
   // FF jogos (ids 49–108 placeholders)
-  { Id: "49", equipa1: "Sporting CP", equipa2: "FC Porto", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "50", equipa1: "Benfica", equipa2: "Braga", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "51", equipa1: "Vitória SC", equipa2: "Famalicão", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "52", equipa1: "Estoril", equipa2: "Casa Pia", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T13:00:00"), Hora: "13:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "53", equipa1: "Rio Ave", equipa2: "Arouca", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "54", equipa1: "Moreirense", equipa2: "Gil Vicente", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "55", equipa1: "Boavista", equipa2: "Portimonense", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "56", equipa1: "Vizela", equipa2: "Chaves", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T13:00:00"), Hora: "13:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "105", equipa1: "Team Fem A", equipa2: "Team Fem B", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "106", equipa1: "Team Fem C", equipa2: "Team Fem D", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "107", equipa1: "Team Fem B", equipa2: "Team Fem C", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T14:00:00"), Hora: "14:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-  { Id: "108", equipa1: "Team Fem A", equipa2: "Team Fem D", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T15:00:00"), Hora: "15:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "49", equipa1: "Os Bucelenses", equipa2: "Vieirense", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "50", equipa1: "U.D. Chamusca", equipa2: "Moçarriense", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "51", equipa1: "G.D. Ilha", equipa2: "Fátima - A", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "52", equipa1: "Peniche", equipa2: "E.F. Tomar", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T13:00:00"), Hora: "13:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "53", equipa1: "Sertanense SPC", equipa2: "Peniche", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "54", equipa1: "Ouriquense", equipa2: "Ponte de Frielas", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "55", equipa1: "Os Lagartos", equipa2: "Vilarregense F.C.", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "56", equipa1: "Vieirense", equipa2: "U.F.C.I.", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T13:00:00"), Hora: "13:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "105", equipa1: "Moçarriense", equipa2: "U.F.C.I.", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "106", equipa1: "Fátima - A", equipa2: "E.F. Tomar", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "107", equipa1: "Vilarregense F.C.", equipa2: "U.F.C.I.", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T14:00:00"), Hora: "14:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
+  { Id: "108", equipa1: "Peniche", equipa2: "Ponte de Frielas", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T15:00:00"), Hora: "15:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
 ];
 
 const grupos = [
   {
     Name: "A",
     Teams: [
-      { Name: "Sertanense FC", J: 2, V: 2, E: 0, D: 0, GD: 3, GM: 4, P: 6 },
-      { Name: "União Pombal",  J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 2, P: 3 },
-      { Name: "Benfica CB",    J: 2, V: 1, E: 0, D: 1, GD: -1, GM: 2, P: 3 },
-      { Name: "Batalha FC",    J: 2, V: 0, E: 0, D: 2, GD: -2, GM: 1, P: 0 },
+      { Name: "Sertanense SPC", J: 2, V: 2, E: 0, D: 0, GD: 3, GM: 4, P: 6 },
+      { Name: "Ouriquense",  J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 2, P: 3 },
+      { Name: "Vieirense",    J: 2, V: 1, E: 0, D: 1, GD: -1, GM: 2, P: 3 },
+      { Name: "Vilarregense F.C.",    J: 2, V: 0, E: 0, D: 2, GD: -2, GM: 1, P: 0 },
     ],
   },
   {
     Name: "B",
     Teams: [
-      { Name: "Team Alpha",      J: 2, V: 2, E: 0, D: 0, GD: 2, GM: 4, P: 6 },
-      { Name: "Desportivo CB",   J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
-      { Name: "Alenquer Benfica",J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
-      { Name: "Team Beta",       J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 3, P: 3 },
+      { Name: "Moçarriense",      J: 2, V: 2, E: 0, D: 0, GD: 2, GM: 4, P: 6 },
+      { Name: "Ponte de Frielas",   J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
+      { Name: "Fátima - A",J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
+      { Name: "G.D. Ilha",       J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 3, P: 3 },
     ],
   },
   {
     Name: "C",
     Teams: [
-      { Name: "Team Gamma",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
-      { Name: "Team Delta",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
-      { Name: "Team Epsilon", J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
-      { Name: "Team Zeta",    J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
+      { Name: "U.D. Chamusca",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
+      { Name: "Peniche",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
+      { Name: "U.D. Belmonte", J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
+      { Name: "Os Bucelenses",    J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
     ],
   },
 ];
@@ -134,8 +132,9 @@ function getJogoById(id) {
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-
+   
 function CalGame({ j, now }) {
+  const [expanded, setExpanded] = useState(false);
   const estadoRaw = (j.Estado || "").trim().toLowerCase();
   const terminado = estadoRaw === "resultado final";
   const intervalo = estadoRaw === "intervalo";
@@ -164,7 +163,7 @@ function CalGame({ j, now }) {
   const hasGoals = parseInt(g1) > 0 || parseInt(g2) > 0;
 
   return (
-    <div className={`cal-game ${estadoClass}`}>
+    <div className={`cal-game ${estadoClass}${expanded ? " expanded" : ""}`} onClick={() => setExpanded(e => !e)}>
       <div className="cal-teams">
         <div className={`cal-team-block ${class1}`}>
           <img src={`/images/teams/${encodeURIComponent(j.equipa1)} logo.png`} alt={j.equipa1} className="cal-team-logo" />
@@ -182,7 +181,7 @@ function CalGame({ j, now }) {
           <span className="cal-team-name">{j.equipa2}</span>
         </div>
       </div>
-      {hasGoals && (
+      {hasGoals && expanded && (
         <div className="cal-scorers">
           <div className="scorer-left">
             {marcadores1.length > 0 ? marcadores1.map((m, i) => <div key={i}>{m}</div>) : <div>&nbsp;</div>}
