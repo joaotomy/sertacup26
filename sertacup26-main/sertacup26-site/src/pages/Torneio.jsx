@@ -29,35 +29,35 @@ const jogos = [
   { Id: "108", equipa1: "Peniche", equipa2: "Ponte de Frielas", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T15:00:00"), Hora: "15:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
 ];
 
-const grupos = [
-  {
-    Name: "A",
-    Teams: [
-      { Name: "Sertanense SPC", J: 2, V: 2, E: 0, D: 0, GD: 3, GM: 4, P: 6 },
-      { Name: "Ouriquense",  J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 2, P: 3 },
-      { Name: "Vieirense",    J: 2, V: 1, E: 0, D: 1, GD: -1, GM: 2, P: 3 },
-      { Name: "Vilarregense F.C.",    J: 2, V: 0, E: 0, D: 2, GD: -2, GM: 1, P: 0 },
-    ],
-  },
-  {
-    Name: "B",
-    Teams: [
-      { Name: "Moçarriense",      J: 2, V: 2, E: 0, D: 0, GD: 2, GM: 4, P: 6 },
-      { Name: "Ponte de Frielas",   J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
-      { Name: "Fátima - A",J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
-      { Name: "G.D. Ilha",       J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 3, P: 3 },
-    ],
-  },
-  {
-    Name: "C",
-    Teams: [
-      { Name: "U.D. Chamusca",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
-      { Name: "Peniche",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
-      { Name: "U.D. Belmonte", J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
-      { Name: "Os Bucelenses",    J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
-    ],
-  },
-];
+// const grupos = [
+//   {
+//     Name: "A",
+//     Teams: [
+//       { Name: "Sertanense SPC", J: 2, V: 2, E: 0, D: 0, GD: 3, GM: 4, P: 6 },
+//       { Name: "Ouriquense",  J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 2, P: 3 },
+//       { Name: "Vieirense",    J: 2, V: 1, E: 0, D: 1, GD: -1, GM: 2, P: 3 },
+//       { Name: "Vilarregense F.C.",    J: 2, V: 0, E: 0, D: 2, GD: -2, GM: 1, P: 0 },
+//     ],
+//   },
+//   {
+//     Name: "B",
+//     Teams: [
+//       { Name: "Moçarriense",      J: 2, V: 2, E: 0, D: 0, GD: 2, GM: 4, P: 6 },
+//       { Name: "Ponte de Frielas",   J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
+//       { Name: "Fátima - A",J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
+//       { Name: "G.D. Ilha",       J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 3, P: 3 },
+//     ],
+//   },
+//   {
+//     Name: "C",
+//     Teams: [
+//       { Name: "U.D. Chamusca",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
+//       { Name: "Peniche",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
+//       { Name: "U.D. Belmonte", J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
+//       { Name: "Os Bucelenses",    J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
+//     ],
+//   },
+// ];
 
 // ─── FF Config ───────────────────────────────────────────────────────────────
 
@@ -300,8 +300,49 @@ function CalendarioTab() {
     </div>
   );
 }
-
 function GruposTab() {
+  const [grupos, setGrupos] = useState([]);
+
+  useEffect(() => {
+    async function fetchGroups() {
+      try {
+        const response = await fetch('http://localhost:3000/groups');
+        const data = await response.json();
+
+        const grouped = {};
+
+        data.forEach(team => {
+          const groupName = team.grupo;
+
+          if (!grouped[groupName]) {
+            grouped[groupName] = {
+              Name: groupName,
+              Teams: [],
+            };
+          }
+
+          grouped[groupName].Teams.push({
+            Name: team.nome_equipa,
+            J: team.numero_jogos,
+            V: team.vitorias,
+            E: team.empates,
+            D: team.derrotas,
+            GD: team.diferenca_golos,
+            GM: team.golos_marcados,
+            P: team.pontos,
+          });
+        });
+
+        setGrupos(Object.values(grouped));
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    fetchGroups();
+  }, []);
+
   return (
     <div id="grupos" className="tab-content active">
       <div className="grid-container group-section">
@@ -318,27 +359,42 @@ function GruposTab() {
                 <col className="col-stat" />
                 <col className="col-stat" />
               </colgroup>
+
               <thead>
                 <tr>
-                  <th colSpan={2} className="group-title">Grupo {group.Name}</th>
+                  <th colSpan={2} className="group-title">
+                    Grupo {group.Name}
+                  </th>
                   <th className="group-stat-head">J</th>
                   <th className="group-stat-head">V</th>
                   <th className="group-stat-head">E</th>
                   <th className="group-stat-head">D</th>
                   <th className="group-stat-head">DG</th>
-                  <th className="group-stat-head">P</th>
+                  <th className="group-stat-head">Pts</th>
                 </tr>
               </thead>
+
               <tbody>
                 {[...group.Teams]
                   .sort((a, b) => b.P - a.P || b.GD - a.GD || b.GM - a.GM)
                   .map((team, i) => (
                     <tr key={team.Name}>
-                      <td className={`group-team-position place-${i + 1}`}>{i + 1}<sup>º</sup></td>
-                      <td className="group-team-cell">
-                        <img src={`/images/teams/${encodeURIComponent(team.Name)} logo.png`} alt={team.Name} className="group-team-logo" />
-                        <span className="group-team-name">{team.Name}</span>
+                      <td className={`group-team-position place-${i + 1}`}>
+                        {i + 1}<sup>º</sup>
                       </td>
+
+                      <td className="group-team-cell">
+                        <img
+                          src={`/images/teams/${encodeURIComponent(team.simbolo)}`}
+                          alt={team.Name}
+                          className="group-team-logo"
+                        />
+
+                        <span className="group-team-name">
+                          {team.Name}
+                        </span>
+                      </td>
+
                       <td className="group-team-stat">{team.J}</td>
                       <td className="group-team-stat">{team.V}</td>
                       <td className="group-team-stat">{team.E}</td>

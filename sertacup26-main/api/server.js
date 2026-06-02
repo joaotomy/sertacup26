@@ -3,49 +3,51 @@ const sql = require('mssql');
 const cors = require('cors');
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-
 const config = {
-  user: 'jtomas',
-  password: 'jtomas',
-  server: 'JAIME',       
-  port: 1433,
+  server: 'localhost',
   database: 'sertacup26',
+  port: 1433,
+  
   options: {
     encrypt: false,
-    trustServerCertificate: true
+    trustServerCertificate: true,
+    trustedConnection: true
   }
 };
 
-sql.connect(config).then(() => {
-  console.log('DB connected');
-  app.listen(3000, () => console.log('API running'));
-}).catch(err => console.error('DB connection failed:', err));
-
+const poolPromise = new sql.ConnectionPool(config).connect();
 
 app.get('/teams', async (req, res) => {
   try {
-    const result = await sql.query`SELECT * FROM equipa`;
+    const pool = await poolPromise;
+
+    const result = await pool
+      .request()
+      .query('SELECT * FROM equipa');
+
     res.json(result.recordset);
+
   } catch (err) {
     res.status(500).send(err.message);
   }
 });
 
-
 app.get('/games', async (req, res) => {
   try {
 
-    const request = new sql.Request();
+    const pool = await poolPromise;
+    const request = pool.request();
 
     let query = `
       SELECT *
       FROM jogo
       WHERE 1=1
     `;
-    
+
     if (req.query.chave) {
       query += ` AND chave = @chave`;
       request.input('chave', sql.VarChar, req.query.chave);
@@ -100,6 +102,7 @@ app.get('/games', async (req, res) => {
       query += `
         AND CAST(hora_prevista AS DATE) = @data
       `;
+
       request.input('data', sql.Date, req.query.data);
     }
 
@@ -110,4 +113,12 @@ app.get('/games', async (req, res) => {
   } catch (err) {
     res.status(500).send(err.message);
   }
+});
+
+app.listen(3000, () => {
+  console.log('API running on port 3000');
+});
+
+poolPromise.catch(err => {
+  console.error('DB connection failed:', err);
 });
