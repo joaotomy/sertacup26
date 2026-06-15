@@ -2,6 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import "../styles/torneio.css";
 
+const apiUrl = "http://localhost:3000"; 
+
 // ─── Placeholder Data ────────────────────────────────────────────────────────
 
 const jogos = [
@@ -14,7 +16,7 @@ const jogos = [
   { Id: "7", equipa1: "Peniche", equipa2: "Sertanense SPC", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-11T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "1º/2º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "10:00" },
   { Id: "8", equipa1: "U.D. Chamusca", equipa2: "G.D. Ilha", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "2", horaPrevista: new Date("2026-05-11T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "2", situacao_precaria: "3º/4º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "11:00" },
   { Id: "9", equipa1: "Os Bucelenses", equipa2: "Vieirense", Estado: "Intervalo", golos_equipa1: "0", golos_equipa2: "1", horaPrevista: new Date("2026-05-11T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "12:00" },
-  // FF jogos (ids 49–108 placeholders)
+
   { Id: "49", equipa1: "Os Bucelenses", equipa2: "Vieirense", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
   { Id: "50", equipa1: "U.D. Chamusca", equipa2: "Moçarriense", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
   { Id: "51", equipa1: "G.D. Ilha", equipa2: "Fátima - A", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
@@ -306,7 +308,7 @@ function GruposTab() {
   useEffect(() => {
     async function fetchGroups() {
       try {
-        const response = await fetch('http://localhost:3000/groups');
+        const response = await fetch(`${apiUrl}/groups`);
         const data = await response.json();
 
         const grouped = {};

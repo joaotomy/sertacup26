@@ -9,7 +9,7 @@ app.use(express.json());
 
 const config = {
   connectionString:
-    'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=sertacup26;Trusted_Connection=yes;Encrypt=no;TrustServerCertificate=yes;'
+    'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=sertacup26_fem;Trusted_Connection=yes;Encrypt=no;TrustServerCertificate=yes;'
 };
 
 const poolPromise = sql.connect(config);
