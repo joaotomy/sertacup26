@@ -21,7 +21,7 @@
     --font-display: 'Blockletter', sans-serif;
     --font-regular: 'Montserrat', sans-serif;
     --font-size-body: clamp(1rem, 0.8rem + 0.6vw, 1.125rem); /* readable on all */
-    --font-size-caption: clamp(0.4rem, 0.5rem + 0.3vw, 0.8rem); /* ~10–13px */
+    --font-size-caption: clamp(0.4rem, 0.5rem + 0.3vw, 0.8rem); /* ~10ï¿½13px */
 
     --font-size-h1: clamp(3rem, 4.5vw, 3.25rem); /* base increased */
     --font-size-h2: clamp(2.625rem, 4vw, 2.875rem);
@@ -658,3 +658,19 @@ body {
         font-size: 2rem;
         margin-bottom: 1rem;
     }
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout main {
+    flex: 1;
+}

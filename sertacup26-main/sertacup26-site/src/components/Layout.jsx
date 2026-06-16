@@ -9,7 +9,7 @@ export default function Layout() {
   const [subOpen, setSubOpen] = useState(false);
 
   return (
-    <>
+    <div className="layout">
       <header className="navbar">
         <div className="nav-wrapper">
 
@@ -81,6 +81,6 @@ export default function Layout() {
       <footer className="site-footer">
         <p>© {new Date().getFullYear()} Sertã Cup</p>
       </footer>
-    </>
+    </div>
   );
 }

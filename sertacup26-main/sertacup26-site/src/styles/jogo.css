@@ -1,0 +1,74 @@
+﻿.admin-access-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+}
+
+.admin-access-card {
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.admin-access-card h1 {
+    margin: 0 0 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.admin-access-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 0.85rem 1rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color .2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+.admin-access-form button {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background: #000000;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .2s;
+}
+
+.admin-access-form button:hover {
+    opacity: 0.9;
+}
+
+.error-message {
+    margin: 0;
+    text-align: center;
+    color: #a11414;
+    font-weight: 500;
+}

@@ -7,6 +7,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const crypto = require('crypto');
+
 const config = {
   connectionString:
     'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=sertacup26_fem;Trusted_Connection=yes;Encrypt=no;TrustServerCertificate=yes;'
@@ -44,15 +46,15 @@ app.get('/groups', async (req, res) => {
   }
 });
 
+
 app.get('/games', async (req, res) => {
   try {
-
     const pool = await poolPromise;
     const request = pool.request();
 
     let query = `
       SELECT *
-      FROM jogo
+      FROM vwjogo
       WHERE 1=1
     `;
 
@@ -62,22 +64,22 @@ app.get('/games', async (req, res) => {
     }
 
     if (req.query.equipa1) {
-      query += ` AND equipa1 = @equipa1`;
+      query += ` AND idequipa1 = @equipa1`;
       request.input('equipa1', sql.Int, req.query.equipa1);
     }
 
     if (req.query.equipa2) {
-      query += ` AND equipa2 = @equipa2`;
+      query += ` AND idequipa2 = @equipa2`;
       request.input('equipa2', sql.Int, req.query.equipa2);
     }
 
     if (req.query.campo) {
-      query += ` AND campo = @campo`;
+      query += ` AND campoid = @campo`;
       request.input('campo', sql.Int, req.query.campo);
     }
 
     if (req.query.grupo) {
-      query += ` AND grupo = @grupo`;
+      query += ` AND grupoid = @grupo`;
       request.input('grupo', sql.Int, req.query.grupo);
     }
 
@@ -91,32 +93,95 @@ app.get('/games', async (req, res) => {
       request.input('liga', sql.Int, req.query.liga);
     }
 
-    if (req.query.comecado) {
-      query += ` AND comecado = @comecado`;
-      request.input('comecado', sql.Bit, req.query.comecado);
+    if (req.query.comecado !== undefined) {
+      query += ` AND começado = @comecado`;
+      request.input('comecado', sql.Bit, req.query.comecado === 'true');
     }
 
-    if (req.query.terminado) {
+    if (req.query.terminado !== undefined) {
       query += ` AND terminado = @terminado`;
-      request.input('terminado', sql.Bit, req.query.terminado);
+      request.input('terminado', sql.Bit, req.query.terminado === 'true');
     }
 
-    if (req.query.jogo_grupo) {
+    if (req.query.jogo_grupo !== undefined) {
       query += ` AND jogo_grupo = @jogo_grupo`;
-      request.input('jogo_grupo', sql.Bit, req.query.jogo_grupo);
+      request.input('jogo_grupo', sql.Bit, req.query.jogo_grupo === 'true');
     }
 
     if (req.query.data) {
-      query += `
-        AND CAST(hora_prevista AS DATE) = @data
-      `;
-
+      query += ` AND CAST(hora_prevista AS DATE) = @data`;
       request.input('data', sql.Date, req.query.data);
     }
 
     const result = await request.query(query);
 
-    res.json(result.recordset);
+    const jogos = result.recordset.map(j => ({
+      ...j,
+
+      hora_prevista: j.hora_prevista
+      ?.toISOString()
+      .replace('Z', ''),
+
+    hora_inicio: j.hora_inicio
+      ?.toISOString()
+      .replace('Z', ''),
+
+    hora_inicio_2parte: j.hora_inicio_2parte
+      ?.toISOString()
+      .replace('Z', ''),
+
+      Estado:
+        j.terminado ? 'Resultado Final' :
+        j.segunda_parte_comecada ? '2ªP' :
+        j.primeira_parte_terminada ? 'Intervalo' :
+        j.começado ? '1ªP' :
+        'Agendado'
+    }));
+
+    res.json(jogos);
+
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+app.post('/game-access', async (req, res) => {
+  try {
+    const { gameId, chave } = req.body;
+
+    const pool = await poolPromise;
+
+    const gameResult = await pool
+      .request()
+      .input('id', sql.Int, gameId)
+      .input('chave', sql.VarChar, chave)
+      .query(`
+        SELECT id
+        FROM jogo
+        WHERE id = @id
+          AND chave = @chave
+      `);
+
+    if (gameResult.recordset.length === 0) {
+      return res.status(401).json({
+        error: 'Invalid game ID or chave.'
+      });
+    }
+
+    const token = crypto.randomUUID();
+
+    await pool
+      .request()
+      .input('jogo_id', sql.Int, gameId)
+      .input('token', sql.UniqueIdentifier, token)
+      .query(`
+        INSERT INTO jogo_acesso (jogo_id, token)
+        VALUES (@jogo_id, @token)
+      `);
+
+    res.json({
+      token
+    });
 
   } catch (err) {
     res.status(500).send(err.message);

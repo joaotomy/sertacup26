@@ -165,6 +165,16 @@
 }
 
 
+.cal-game-status .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--live-red);
+    animation: blink 1s infinite;
+    flex-shrink: 0;
+}
+
+
 .cal-game {
     background-color: var(--main-black);
     color: var(--main-white);
@@ -227,7 +237,12 @@
 .cal-game-status {
     font-size: var(--font-size-caption);
     font-family: var(--font-regular);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
+
 
 .cal-game.atrasado .cal-game-status {
     font-size: 0.5rem;
