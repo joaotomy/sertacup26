@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import "../styles/torneio.css";
 
-const apiUrl = "http://localhost:3000"; 
+const apiUrl = "/api"; 
 
 // ─── Placeholder Data ────────────────────────────────────────────────────────
 
