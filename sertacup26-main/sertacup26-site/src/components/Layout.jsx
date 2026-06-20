@@ -1,4 +1,3 @@
-// Layout.jsx
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "../styles/site.css";
@@ -14,7 +13,7 @@ export default function Layout() {
         <div className="nav-wrapper">
 
           <div className="nav-section">
-            <Link to="/info" className="nav-item">INFORMAÇÕES</Link>
+            <Link to="/info" className="nav-item disabled-link">INFORMAÇÕES</Link>
 
             <div className="dropdown">
               <Link to="/torneio" className="nav-item">TORNEIO</Link>
@@ -22,29 +21,29 @@ export default function Layout() {
               <div className="dropdown-content">
                 <Link to="/torneio?tab=calendario">Calendário</Link>
                 <Link to="/torneio?tab=grupos">Grupos</Link>
-                {/* <Link to="/torneio?tab=fases-finais">Fases Finais</Link> */}
+                <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
               </div>
             </div>
           </div>
 
           <div className="logo-container desktop-logo">
-            <Link to="/">
+            {/* <Link to="/"> */}
               <img src="/images/logo.png" alt="logo" className="logo" />
-            </Link>
+            {/* </Link> */}
           </div>
 
           <div className="nav-section">
-            <Link to="/historia" className="nav-item">HISTÓRIA</Link>
-            <Link to="/patrocinadores" className="nav-item">PATROCINADORES</Link>
+            <Link to="/historia" className="nav-item disabled-link">HISTÓRIA</Link>
+            <Link to="/patrocinadores" className="nav-item disabled-link">PATROCINADORES</Link>
           </div>
         </div>
       </header>
 
       {/* mobile */}
       <div className="mobile-top">
-        <Link to="/">
+        {/* <Link to="/"> */}
           <img src="/images/logo.png" className="logo-mobile" />
-        </Link>
+       {/* </Link> */}
       </div>
 
       <div className="mobile-bottom">
@@ -55,7 +54,7 @@ export default function Layout() {
 
       {menuOpen && (
         <div className="mobile-menu">
-          <Link to="/info">INFORMAÇÕES</Link>
+          <Link to="/info" className="disabled-link">INFORMAÇÕES</Link>
 
           <div className="dropdown-mobile">
             <span onClick={() => setSubOpen(!subOpen)}>TORNEIO</span>
@@ -69,8 +68,8 @@ export default function Layout() {
             )}
           </div>
 
-          <Link to="/historia">HISTÓRIA</Link>
-          <Link to="/patrocinadores">PATROCINADORES</Link>
+          <Link to="/historia" className="disabled-link">HISTÓRIA</Link>
+          <Link to="/patrocinadores" className="disabled-link">PATROCINADORES</Link>
         </div>
       )}
 
