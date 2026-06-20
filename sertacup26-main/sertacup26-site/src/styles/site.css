@@ -20,7 +20,7 @@
     --live-red: #FF3A3A;
     --highlight-blue: #4367F6;
     /* Fonts */
-    --font-family: "Blockletter", sans-serif;
+    --font-display: "Blockletter", sans-serif;
     --font-regular: 'Montserrat', sans-serif;
     --font-size-body: clamp(1rem, 0.8rem + 0.6vw, 1.125rem); /* readable on all */
     --font-size-caption: clamp(0.4rem, 0.5rem + 0.3vw, 0.8rem); /* ~10�13px */
