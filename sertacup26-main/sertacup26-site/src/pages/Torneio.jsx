@@ -115,6 +115,19 @@ const allLeagues = [
 // }
 
 function getPlacementRange(totalPlacements, boxCount, boxIndex) {
+
+  if (boxIndex == 4 || boxIndex == 5)
+  {
+    return `5º-8º LUGAR`
+  }
+  if (boxIndex == 6)
+  {
+    return `5º-6º LUGAR`
+  }
+  if (boxIndex == 7)
+  {
+    return `7º-8º LUGAR`
+  }
   const rangeSize = Math.floor(totalPlacements / boxCount);
   const start = boxIndex * rangeSize + 1;
   const end = (boxIndex + 1) * rangeSize;
