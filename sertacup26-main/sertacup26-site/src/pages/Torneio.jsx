@@ -117,7 +117,7 @@ const allLeagues = [
 function getPlacementRange(totalPlacements, boxCount, boxIndex) {
   countGetPlacement ++;
 
-  if (countGetPlacement > 24)
+  if (countGetPlacement > 8)
     return `5º–8º LUGAR`;
 
   if (countGetPlacement == 46)
