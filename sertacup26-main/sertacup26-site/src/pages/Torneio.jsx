@@ -413,7 +413,7 @@ function GruposTab() {
 
                       <td className="group-team-cell">
                         <img
-                          src={`/images/teams/${encodeURIComponent(team.nome_equipa)}.png`}
+                          src={`/images/teams/${encodeURIComponent(team.Name)}.png`}
                           alt={team.Name}
                           className="group-team-logo"
                         />

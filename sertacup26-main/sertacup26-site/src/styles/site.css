@@ -674,3 +674,9 @@ body,
 .layout main {
     flex: 1;
 }
+
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.4;
+}
