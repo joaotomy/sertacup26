@@ -21,7 +21,7 @@ export default function Layout() {
               <div className="dropdown-content">
                 <Link to="/torneio?tab=calendario">Calendário</Link>
                 <Link to="/torneio?tab=grupos">Grupos</Link>
-                <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
+                <Link className="disabled-link" to="/torneio?tab=fases-finais">Fases Finais</Link>
               </div>
             </div>
           </div>
