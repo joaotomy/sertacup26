@@ -117,16 +117,16 @@ const allLeagues = [
 function getPlacementRange(totalPlacements, boxCount, boxIndex) {
   countGetPlacement ++;
 
-  if (countGetPlacement > 10)
+  if (countGetPlacement == 12)
     return `5º–8º LUGAR`;
 
-  if (countGetPlacement == 46)
+  if (countGetPlacement == 13)
     return `5º–6º LUGAR`;
 
-  if (countGetPlacement == 47)
+  if (countGetPlacement == 14)
     return `7º–8º LUGAR`;
 
-  if (countGetPlacement == 48)
+  if (countGetPlacement == 15)
     return `5º–8º LUGAR`;
 
   const rangeSize = Math.floor(totalPlacements / boxCount);
