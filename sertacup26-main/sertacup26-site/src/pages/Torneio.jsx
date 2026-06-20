@@ -171,7 +171,7 @@ function CalGame({ j, now }) {
     <div className={`cal-game ${estadoClass}${expanded ? " expanded" : ""}`} onClick={() => setExpanded(e => !e)}>
       <div className="cal-teams">
         <div className={`cal-team-block ${class1}`}>
-          <img src={`/images/teams/${encodeURIComponent(j.equipa1)} logo.png`} alt={j.equipa1} className="cal-team-logo" />
+          <img src={`/images/teams/${encodeURIComponent(j.equipa1)}.png`} alt={j.equipa1} className="cal-team-logo" />
           <span className="cal-team-name">{j.equipa1}</span>
         </div>
         <div className="cal-display">
@@ -189,7 +189,7 @@ function CalGame({ j, now }) {
           <div className="cal-score">{scoreDisplay}</div>
         </div>
         <div className={`cal-team-block ${class2}`}>
-          <img src={`/images/teams/${encodeURIComponent(j.equipa2)} logo.png`} alt={j.equipa2} className="cal-team-logo" />
+          <img src={`/images/teams/${encodeURIComponent(j.equipa2)}.png`} alt={j.equipa2} className="cal-team-logo" />
           <span className="cal-team-name">{j.equipa2}</span>
         </div>
       </div>
@@ -240,13 +240,13 @@ function FFGame({ jogo }) {
       </div>
       <div className="ff-game-box-inner">
         <div className={`ff-team-block ${class1}`}>
-          <img src={`/images/teams/${encodeURIComponent(jogo.equipa1 || "")} logo.png`} alt={jogo.equipa1} onError={e => e.target.style.display = "none"} className="ff-team-logo" />
+          <img src={`/images/teams/${encodeURIComponent(jogo.equipa1 || "")}.png`} alt={jogo.equipa1} onError={e => e.target.style.display = "none"} className="ff-team-logo" />
           <span className="ff-team-name"><span>{jogo.equipa1}</span></span>
           <div className="ff-separator"></div>
           <span className="ff-team-score">{g1}</span>
         </div>
         <div className={`ff-team-block ${class2}`}>
-          <img src={`/images/teams/${encodeURIComponent(jogo.equipa2 || "")} logo.png`} alt={jogo.equipa2} onError={e => e.target.style.display = "none"} className="ff-team-logo" />
+          <img src={`/images/teams/${encodeURIComponent(jogo.equipa2 || "")}.png`} alt={jogo.equipa2} onError={e => e.target.style.display = "none"} className="ff-team-logo" />
           <span className="ff-team-name"><span>{jogo.equipa2}</span></span>
           <div className="ff-separator"></div>
           <span className="ff-team-score">{g2}</span>
