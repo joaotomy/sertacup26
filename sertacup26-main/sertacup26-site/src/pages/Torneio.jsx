@@ -86,22 +86,22 @@ const leagueRounds = {
   //   { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["51","52"], GapLevel: 0 },
   // ],
   conference: [
-    { Title: "Meias Finais", Side: "left",   BoxCount: 1, GamesPerBox: 1, Jogos: ["17", "18"], GapLevel: 1 },
+    { Title: "Meias Finais", Side: "left",   BoxCount: 1, GamesPerBox: 1, Jogos: ["17"], GapLevel: 1 },
     { Title: "Finais",       Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["23","24"], GapLevel: 3 },
-    { Title: "Meias Finais", Side: "right",  BoxCount: 1, GamesPerBox: 1, Jogos: ["19", "20"], GapLevel: 1 },
+    { Title: "Meias Finais", Side: "right",  BoxCount: 1, GamesPerBox: 1, Jogos: ["18"], GapLevel: 1 },
   ],
   feminina: [
-    { Title: "Meias Finais", Side: "left",   BoxCount: 1, GamesPerBox: 1, Jogos: ["13", "14"], GapLevel: 1 },
+    { Title: "Meias Finais", Side: "left",   BoxCount: 1, GamesPerBox: 1, Jogos: ["19"], GapLevel: 1 },
     { Title: "Finais",       Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["21","22"], GapLevel: 3 },
-    { Title: "Meias Finais", Side: "right",  BoxCount: 1, GamesPerBox: 1, Jogos: ["15", "16"], GapLevel: 1 },
+    { Title: "Meias Finais", Side: "right",  BoxCount: 1, GamesPerBox: 1, Jogos: ["20"], GapLevel: 1 },
   ],
 };
 
 const allLeagues = [
   // { Key: "champs",     Name: "Liga dos Campeões PALSER" },
   // { Key: "europa",     Name: "Liga Europa PINHOSER" },
-  { Key: "conference", Name: "Liga Conferência STAND FRIGI" },
-  { Key: "feminina",   Name: "Liga Feminina JOÃO MAIA AUTOMÓVEIS" },
+  { Key: "conference", Name: "Sertã Cup Feminina - 1º ao 4º lugar" },
+  { Key: "feminina",   Name: "Sertã Cup Feminina - 5º ao 8º lugar" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
