@@ -1,5 +1,5 @@
 const express = require('express');
-const sql = require('mssql/msnodesqlv8');
+const sql = require('mssql');
 const cors = require('cors');
 
 const app = express();
@@ -10,8 +10,14 @@ app.use(express.json());
 const crypto = require('crypto');
 
 const config = {
-  connectionString:
-    'Driver={ODBC Driver 18 for SQL Server};Server=localhost;Database=sertacup26_fem;Trusted_Connection=yes;Encrypt=no;TrustServerCertificate=yes;'
+  user: 'sa',
+  password: 'Bexigaemuitoburro8_',
+  server: 'localhost',
+  database: 'sertacup26_fem',
+  options: {
+    encrypt: false,
+    trustServerCertificate: true
+  }
 };
 
 const poolPromise = sql.connect(config);
