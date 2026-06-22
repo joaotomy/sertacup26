@@ -12,7 +12,7 @@ const crypto = require('crypto');
 const config = {
   user: 'sa',
   password: 'Bexigaemuitoburro8_',
-  server: 'localhost',
+  server: '49.12.237.72',
   database: 'sertacup26_fem',
   options: {
     encrypt: false,

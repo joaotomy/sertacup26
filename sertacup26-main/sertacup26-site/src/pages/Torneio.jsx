@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import "../styles/torneio.css";
 
-const apiUrl = "/api"; 
+const apiUrl = "https://sertanense.pt/api"; 
 let countGetPlacement = 0;
 // ─── Placeholder Data ────────────────────────────────────────────────────────
 
