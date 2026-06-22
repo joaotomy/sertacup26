@@ -11,7 +11,7 @@ export default function HomePage() {
           <div className="col-span-4 col-start-1 hero-cup-wrapper">
             <img
               src="/images/cup.png"
-              alt="Taça Sertã Cup"
+              alt="Taça Sertã 1  Cup"
               className="hero-cup-img"
             />
           </div>
