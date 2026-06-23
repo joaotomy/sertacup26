@@ -3,15 +3,27 @@ import "../styles/historia.css";
 import timelineEvents from "../data/timelineEvents";
 import winners from "../data/winners";
 
+function TimelineCard({ event }) {
+  return (
+    <article className="timeline-card">
+      <div className="timeline-year">
+        {event.year}
+      </div>
+
+      <p>{event.text}</p>
+    </article>
+  );
+}
+
 export default function Historia() {
 
 const communityImages = [
 "/images/community/serta_junta.png",
-"/images/community/serta_municipio.pngg",
+"/images/community/serta_municipio.png",
 "/images/community/serta_bombeiros.png",
 "/images/community/etps.png",
 "/images/community/fisioserta.jpg",
-"/images/community/danceclub.jpg"
+"/images/community/danceclub.jpeg"
 ];
 
 return ( <main className="historia-page">
@@ -20,25 +32,30 @@ return ( <main className="historia-page">
   <section className="historia-hero">
 
     <img
-      src="/images/historia-cover.jpg"
+      src="/images/storycover.jpg"
       alt=""
       className="historia-cover"
     />
 
-    <div className="grid-container">
+  <div className="historia-title-wrapper">
 
-      <div
-        className="
-        historia-title
-        col-span-4
-        md:col-span-4
-        sm:col-span-4
-      "
-      >
-        HISTÓRIA
-      </div>
+        <div className="grid-container">
+
+            <div
+                className="
+                historia-title
+                col-span-4
+                md:col-span-4
+                sm:col-span-4
+                "
+            >
+                HISTÓRIA
+            </div>
+
+        </div>
 
     </div>
+
 
   </section>
 
@@ -57,27 +74,23 @@ return ( <main className="historia-page">
       "
       >
         <p>
-          Mais do que um torneio...
+          Mais do que um torneio, a Sertã Cup nasceu de uma vontade clara: criar uma experiência marcante para jovens atletas, famílias e clubes, promovendo o futebol como espaço de crescimento, convívio e paixão pelo desporto.
         </p>
 
         <p>
-          Impulsionada pelo compromisso...
+          Impulsionada pelo compromisso do Sertanense Futebol Clube com a formação desportiva e cívica dos nossos atletas, a Sertã Cup surgiu também como resposta ao protocolo estabelecido com a Câmara Municipal da Sertã, dando vida a um evento pensado para unir competição, educação e comunidade.
         </p>
 
         <p>
-          Ao longo das suas edições...
+          Ao longo das suas edições, o torneio tem vindo a crescer de forma sustentada, afirmando-se como um momento de referência no futebol jovem da região. A cada ano, dezenas de equipas chegam à Sertã para viver dias de competição intensa, amizade, partilha e fair-play, criando memórias que ultrapassam as quatro linhas.
         </p>
 
         <p>
-          A cada ano...
+          Na sua quinta edição, a Sertã Cup dá mais um passo em frente. Mantendo a ambição de reunir 32 equipas e cerca de 450 atletas, o torneio expande-se agora para 4 dias de atividade, reforçando a experiência competitiva e social de todos os participantes.
         </p>
 
         <p>
-          Na sua quinta edição...
-        </p>
-
-        <p>
-          Com o apoio fundamental...
+          Com o apoio fundamental de pais, voluntários, entidades locais e parceiros regionais, a Sertã Cup continua a crescer com ambição, responsabilidade social e identidade própria, acreditando que o desporto pode ser uma ferramenta crucial no desenvolvimento de jovens e da comunidade.
         </p>
 
       </div>
@@ -86,70 +99,83 @@ return ( <main className="historia-page">
 
   </section>
 
-  {/* TIMELINE */}
+ {/* TIMELINE */}
 
-  <section className="timeline-section">
+<section className="timeline-section">
 
-    <div className="grid-container">
+  <div className="grid-container">
 
-      <div className="timeline-title col-span-12">
-        EVOLUÇÃO
-      </div>
+    <div className="timeline-track col-span-12">
 
-      <div className="timeline-desktop col-span-12">
+      <img
+        src="/images/SVG/timeline-line.svg"
+        alt=""
+        className="timeline-line"
+      />
 
-        <div className="timeline-line" />
+      {timelineEvents.map((event) => (
 
-        {timelineEvents.map((event) => (
-          <div
-            key={event.year}
-            className={`timeline-event ${event.position}`}
-          >
+        <div
+          key={`${event.year}-${event.title}`}
+          className={`timeline-node ${event.position}`}
+        >
 
-            <div className="timeline-marker" />
+          {event.position === "top" && (
+            <TimelineCard event={event} />
+          )}
 
-            <div className="timeline-card">
+          <img
+            src="/images/SVG/timeline-cup.svg"
+            alt=""
+            className="timeline-cup"
+          />
 
-              <h3>{event.year}</h3>
+          {event.position === "bottom" && (
+            <TimelineCard event={event} />
+          )}
 
-              <h4>{event.title}</h4>
+        </div>
 
-              <p>{event.text}</p>
-
-            </div>
-
-          </div>
-        ))}
-
-      </div>
-
-      <div className="timeline-mobile col-span-12">
-
-        {timelineEvents.map((event) => (
-          <div
-            key={event.year}
-            className="timeline-mobile-item"
-          >
-            <div className="timeline-mobile-dot" />
-
-            <div>
-
-              <h3>{event.year}</h3>
-
-              <h4>{event.title}</h4>
-
-              <p>{event.text}</p>
-
-            </div>
-
-          </div>
-        ))}
-
-      </div>
+      ))}
 
     </div>
 
-  </section>
+    {/* MOBILE */}
+
+    <div className="timeline-mobile col-span-12">
+
+      {timelineEvents.map((event) => (
+
+        <article
+          key={`${event.year}-${event.title}-mobile`}
+          className="timeline-mobile-card"
+        >
+
+          <div className="timeline-mobile-dot" />
+
+          <div>
+
+            <div className="timeline-year">
+              {event.year}
+            </div>
+
+            <div className="timeline-event-title">
+              {event.title}
+            </div>
+
+            <p>{event.text}</p>
+
+          </div>
+
+        </article>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
 
   {/* WINNERS */}
 
@@ -214,7 +240,7 @@ return ( <main className="historia-page">
 
       <div className="vision-block col-span-12">
 
-        <h3>IMAGEM</h3>
+        <div className="vision-subtitle">IMAGEM</div>
 
         <p>
           Ser um torneio de referência a nível Distrital e Nacional.
@@ -224,7 +250,7 @@ return ( <main className="historia-page">
 
       <div className="vision-block col-span-12">
 
-        <h3>UNIVERSO</h3>
+        <div className="vision-subtitle">UNIVERSO</div>
 
         <p>
           Atingir 32 equipas, 450 atletas, num total de 600 participantes.
@@ -238,7 +264,7 @@ return ( <main className="historia-page">
 
           <div className="vision-copy">
 
-            <h3>COMUNIDADE</h3>
+            <div className="vision-subtitle">COMUNIDADE</div>
 
             <p>
               Promover o concelho da Sertã, dando a conhecer todo o seu potencial. Dinamizar o comércio e alojamento local. Envolver o S.F.C. e outras entidades na organização do torneio.
@@ -268,9 +294,9 @@ return ( <main className="historia-page">
 
           <div className="vision-copy">
 
-            <h3>
+            <div className="vision-subtitle">
               RESPONSABILIDADE SOCIAL
-            </h3>
+            </div>
 
             <p>
               Parcerias com identidades locais e regionais, potenciando angariação de fundos.

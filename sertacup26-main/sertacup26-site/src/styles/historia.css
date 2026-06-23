@@ -18,21 +18,25 @@ object-fit:cover;
 display:block;
 }
 
-.historia-title{
-position:absolute;
-left:0;
-bottom:3rem;
-
-font-family:var(--font-display);
-font-size:clamp(4rem,12vw,10rem);
-color:var(--main-white);
-
-text-shadow:
-    0 4px 20px rgba(0,0,0,.35);
-
-
+.historia-hero{
+    position:relative;
 }
 
+.historia-title-wrapper{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:3rem;
+}
+
+.historia-title{
+    font-family:var(--font-display);
+    font-size:clamp(4rem,12vw,10rem);
+    color:var(--main-white);
+
+    text-shadow:
+        0 4px 20px rgba(0,0,0,.35);
+}
 /* =========================
 STORY
 ========================= */
@@ -58,75 +62,157 @@ TIMELINE
 ========================= */
 
 .timeline-section{
-background:var(--main-black);
-color:var(--main-white);
-padding:8rem 0;
+    background:var(--main-black);
+    color:var(--main-white);
+    padding:3rem 0 4rem;
 }
 
-.timeline-title{
-font-family:var(--font-display);
-font-size:var(--font-size-h2);
-margin-bottom:6rem;
-}
-
-.timeline-desktop{
-position:relative;
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:1rem;
-min-height:500px;
+.timeline-track{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    min-height:400px;
+    position:relative;
 }
 
 .timeline-line{
-position:absolute;
-left:0;
-right:0;
-top:50%;
-height:2px;
-background:rgba(255,255,255,.25);
+    position:absolute;
+    top:48%;
+    left:0;
+    width:100%;
+    transform:translateY(-50%);
+    z-index:1;
+     opacity:.8;
 }
 
-.timeline-event{
-position:relative;
+.timeline-node{
+    position:relative;
+    z-index:2;
+    height:500px;
 }
 
-.timeline-event.top{
-align-self:flex-start;
+.timeline-node.top{
+    justify-content:flex-end;
 }
 
-.timeline-event.bottom{
-align-self:flex-end;
+.timeline-node.bottom{
+    justify-content:flex-start;
+}
+
+.timeline-cup{
+       position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:10rem;
+    flex-shrink:0;
 }
 
 .timeline-card{
-text-align:center;
+    text-align:center;
+    max-width:250px;
+    padding:1rem;
 }
 
-.timeline-card h3{
-font-family:var(--font-display);
-font-size:var(--font-size-h4);
+.timeline-node.top .timeline-card{
+    position:absolute;
+
+    top:0;
+    left:50%;
+
+    width:20rem;
+
+    transform:translateX(-50%);
 }
 
-.timeline-card h4{
-margin-top:.5rem;
-margin-bottom:.75rem;
+.timeline-node.bottom .timeline-card{
+    position:absolute;
+
+    bottom:0;
+    left:50%;
+
+    width:20rem;
+
+    transform:translateX(-50%);
+}
+
+.timeline-cup{
+    position:absolute;
+    left:50%;
+    top:50%;
+
+    width:60px;
+
+    transform:translate(-50%,-50%);
+}
+
+.timeline-year{
+    font-family:var(--font-display);
+    font-size:var(--font-size-h5);
+    margin-bottom:.5rem;
+}
+
+.timeline-event-title{
+    font-family:var(--font-display);
+    font-size:var(--font-size-h9);
+    margin-bottom:.75rem;
 }
 
 .timeline-card p{
-font-size:var(--font-size-h8);
-}
-
-.timeline-marker{
-width:14px;
-height:14px;
-border-radius:50%;
-background:white;
-margin:1rem auto;
+    font-size:var(--font-size-h9);
+    line-height:1.5;
+    opacity:.85;
 }
 
 .timeline-mobile{
-display:none;
+    display:none;
 }
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1024px){
+
+    .timeline-cup{
+        width:3rem;
+    }
+
+    .timeline-card{
+        max-width:160px;
+    }
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .timeline-track{
+        display:none;
+    }
+
+    .timeline-mobile{
+        display:flex;
+        flex-direction:column;
+        gap:2rem;
+    }
+
+    .timeline-mobile-card{
+        display:flex;
+        gap:1rem;
+    }
+
+    .timeline-mobile-dot{
+        width:12px;
+        height:12px;
+        border-radius:50%;
+        background:white;
+        margin-top:.5rem;
+        flex-shrink:0;
+    }
+}
+
 
 /* =========================
 WINNERS
@@ -178,18 +264,20 @@ gap:2rem;
 }
 
 .winner-item{
+        font-family:var(--font-display);
 text-align:center;
+    font-size:var(--font-size-h7);
 }
 
 .winner-logo{
-width:100%;
+width:90%;
 max-width:120px;
 margin:auto;
 display:block;
 }
 
 .winner-item p{
-margin-top:1rem;
+margin-top:2rem;
 }
 
 .upcoming-winner{
@@ -205,6 +293,18 @@ align-items:center;
 text-align:center;
 
 
+}
+
+.upcoming-winner .winner-logo{
+    width:100%;
+max-width:150px;
+}
+
+.upcoming-winner p{
+margin-top:2rem;
+        font-family:var(--font-display);
+text-align:center;
+    font-size:var(--font-size-h7);
 }
 
 /* =========================
@@ -232,7 +332,7 @@ padding:3rem 0;
 border-bottom:1px solid rgba(255,255,255,.15);
 }
 
-.vision-block h3{
+.vision-subtitle{
 font-family:var(--font-display);
 font-size:var(--font-size-h5);
 
@@ -254,15 +354,15 @@ gap:3rem;
 }
 
 .community-gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:1rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
 }
 
 .community-gallery img{
-width:100%;
-aspect-ratio:1;
-object-fit:cover;
+    width:100%;
+    max-height:140px;
+    object-fit:contain;
 }
 
 .social-gallery{
