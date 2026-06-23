@@ -9,6 +9,7 @@ import Torneio from "./pages/Torneio";
 import Historia from "./pages/Historia";
 import Patrocinadores from "./pages/Patrocinadores";
 import GameHomepage from "./pages/GameHomepage";
+import About from "./pages/About";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="historia" element={<Historia />} />
         <Route path="patrocinadores" element={<Patrocinadores />} />
         <Route path="jogo" element={<GameHomepage />} />
+        <Route path="about" element={<About />} />
       </Route>
     </Routes>
   );

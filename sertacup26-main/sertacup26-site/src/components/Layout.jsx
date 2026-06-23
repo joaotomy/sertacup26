@@ -33,7 +33,7 @@ export default function Layout() {
           </div>
 
           <div className="nav-section">
-            <Link to="/historia" className="nav-item disabled-link">HISTÓRIA</Link>
+            <Link to="/historia" className="nav-item">HISTÓRIA</Link>
             <Link to="/patrocinadores" className="nav-item disabled-link">PATROCINADORES</Link>
           </div>
         </div>
