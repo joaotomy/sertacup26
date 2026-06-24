@@ -12,7 +12,7 @@ export default function Layout() {
         <div className="nav-wrapper">
 
           <div className="nav-section">
-            <Link to="/info" className="nav-item disabled-link">INFORMAÇÕES</Link>
+            <Link to="/info" className="nav-item">INFORMAÇÕES</Link>
 
             <div className="dropdown">
               <Link to="/torneio" className="nav-item">TORNEIO</Link>
@@ -40,9 +40,9 @@ export default function Layout() {
 
       {/* mobile */}
       <div className="mobile-top">
-        {/* <Link to="/"> */}
+     <Link to="/">
           <img src="/images/logo.png" className="logo-mobile" />
-       {/* </Link> */}
+</Link> 
       </div>
 
       <div className="mobile-bottom">

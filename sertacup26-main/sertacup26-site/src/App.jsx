@@ -4,7 +4,7 @@ import "./styles/site.css";
 import "./styles/hero.css";
 
 import Home from "./pages/Home";
-import Info from "./pages/Info";
+import Info from "./pages/Info/Info";
 import Torneio from "./pages/Torneio";
 import Historia from "./pages/Historia";
 import Patrocinadores from "./pages/Patrocinadores";
