@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 471.96 165.72">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 38.87px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        font-family: MontserratRoman-Bold, Montserrat;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        font-size: 10.67px;
+      }
+
+      .cls-3 {
+        font-size: 24.11px;
+      }
+
+      .cls-4 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-5 {
+        font-family: MontserratRoman-Regular, Montserrat;
+        font-size: 18px;
+        font-variation-settings: 'wght' 400;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer_1">
+    <g>
+      <text class="cls-5" transform="translate(37.46 135.97)"><tspan x="0" y="0">Liga dos Campeões</tspan></text>
+      <text class="cls-5" transform="translate(275.14 127.7)"><tspan x="0" y="0">Liga</tspan><tspan x="-26.81" y="21.6">Revelação</tspan></text>
+      <text class="cls-5" transform="translate(392.54 127.7)"><tspan x="0" y="0">Liga</tspan><tspan x="-25.6" y="21.6">Promessa</tspan></text>
+      <polygon class="cls-4" points="470.46 46.08 470.46 97.36 1.5 97.36 1.5 1.5 118.74 1.5 118.74 21.56 235.99 21.56 235.99 34.42 353.21 34.42 353.21 46.08 470.46 46.08"/>
+      <text class="cls-1" transform="translate(254.53 89.01)"><tspan x="0" y="0">3º</tspan></text>
+      <text class="cls-1" transform="translate(137.5 89.01)"><tspan x="0" y="0">2º</tspan></text>
+      <text class="cls-3" transform="translate(105.6 84.64)"><tspan x="0" y="0">&amp;</tspan></text>
+      <text class="cls-1" transform="translate(25.07 89.01)"><tspan x="0" y="0">1º</tspan></text>
+      <text class="cls-2" transform="translate(60.39 68.46)"><tspan x="0" y="0">De</tspan><tspan x="0" y="10.21">Cada</tspan><tspan x="0" y="20.42">Grupo</tspan></text>
+      <text class="cls-2" transform="translate(182.54 68.46)"><tspan x="0" y="0">De</tspan><tspan x="0" y="10.21">Cada</tspan><tspan x="0" y="20.42">Grupo</tspan></text>
+      <text class="cls-2" transform="translate(301.83 68.46)"><tspan x="0" y="0">De</tspan><tspan x="0" y="10.21">Cada</tspan><tspan x="0" y="20.42">Grupo</tspan></text>
+      <text class="cls-2" transform="translate(419.08 68.46)"><tspan x="0" y="0">De</tspan><tspan x="0" y="10.21">Cada</tspan><tspan x="0" y="20.42">Grupo</tspan></text>
+      <text class="cls-1" transform="translate(367.17 89.01)"><tspan x="0" y="0">4º</tspan></text>
+      <line class="cls-4" x1="353.14" y1="43.36" x2="353.14" y2="164.22"/>
+      <line class="cls-4" x1="235.98" y1="29.62" x2="235.98" y2="164.22"/>
+      <polyline class="cls-4" points="470.46 97.36 470.46 164.22 1.5 164.22 1.5 97.36"/>
+    </g>
+  </g>
+</svg>

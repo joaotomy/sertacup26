@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 549.61 312.26">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        font-size: 5.3px;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        font-family: MontserratRoman-Regular, Montserrat;
+        font-variation-settings: 'wght' 400;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-9, .cls-6, .cls-10 {
+        font-size: 13.21px;
+      }
+
+      .cls-11 {
+        font-family: MontserratRoman-Bold, Montserrat;
+        font-variation-settings: 'wght' 700;
+        font-weight: 700;
+      }
+
+      .cls-12 {
+        font-family: MontserratRoman-SemiBold, Montserrat;
+        font-size: 15.25px;
+        font-variation-settings: 'wght' 600;
+        font-weight: 600;
+      }
+
+      .cls-2 {
+        opacity: .5;
+        stroke-dasharray: 1.47;
+      }
+
+      .cls-7 {
+        font-size: 6.29px;
+      }
+
+      .cls-8, .cls-13 {
+        opacity: .8;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer_1">
+    <g>
+      <rect class="cls-1" x="460.47" y="119.85" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+      <text class="cls-12" transform="translate(491.5 112)"><tspan x="0" y="0">J2</tspan></text>
+      <text class="cls-10" transform="translate(473.44 136.4)"><tspan class="cls-11" x="0" y="0">B1</tspan><tspan class="cls-4" x="15.29" y="0" xml:space="preserve"> vs C2</tspan></text>
+      <rect class="cls-1" x="460.47" y="178.68" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+      <text class="cls-12" transform="translate(490.76 170.83)"><tspan x="0" y="0">J4</tspan></text>
+      <text class="cls-10" transform="translate(473.05 195.23)"><tspan class="cls-11" x="0" y="0">D1</tspan><tspan class="cls-5" x="16.1" y="0" xml:space="preserve"> vs A2</tspan></text>
+      <text class="cls-7" transform="translate(454.08 84.62)"><tspan x="0" y="0">Classificação Potencial 1º a 8º</tspan></text>
+      <rect class="cls-2" x="450.6" y="91.19" width="98.52" height="121" rx="8.2" ry="8.2"/>
+      <g>
+        <rect class="cls-1" x="347.33" y="90.69" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(378.02 84.88)"><tspan x="0" y="0">J6</tspan></text>
+        <text class="cls-10" transform="translate(360.82 107.25)"><tspan class="cls-11" x="0" y="0">B1 </tspan><tspan class="cls-5" x="19.03" y="0">vs D1</tspan></text>
+        <rect class="cls-1" x="347.33" y="214.38" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(377.83 206.53)"><tspan x="0" y="0">J8</tspan></text>
+        <text class="cls-10" transform="translate(359.45 230.93)"><tspan class="cls-11" x="0" y="0">C2</tspan><tspan class="cls-4" x="17.48" y="0" xml:space="preserve"> vs A2</tspan></text>
+        <text class="cls-7" transform="translate(340.3 261.33)"><tspan x="0" y="0">Classificação Potencial 5º a 8º</tspan></text>
+        <text class="cls-7" transform="translate(340.87 59.72)"><tspan x="0" y="0">Classificação Potencial 1º a 4º</tspan></text>
+        <rect class="cls-2" x="336.36" y="186.42" width="103.16" height="64.02" rx="8.2" ry="8.2"/>
+        <rect class="cls-2" x="335.13" y="65.71" width="103.16" height="64.02" rx="8.2" ry="8.2"/>
+        <text class="cls-3" transform="translate(348.88 122.43)"><tspan x="0" y="0">Vencedor J2 vs Vencedor J4 </tspan></text>
+        <text class="cls-3" transform="translate(349.59 246.21)"><tspan x="0" y="0">Perdedor J2 vs Perdedor J4 </tspan></text>
+      </g>
+      <g>
+        <rect x="235.42" y="20.35" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(266.11 16.32)"><tspan x="0" y="0">J9</tspan></text>
+        <text class="cls-9" transform="translate(249.58 36.91)"><tspan class="cls-11" x="0" y="0">A1</tspan><tspan class="cls-8" x="15.3" y="0" xml:space="preserve"> vs B1</tspan></text>
+        <rect class="cls-1" x="235.42" y="97.99" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(262.85 94.3)"><tspan x="0" y="0">J10</tspan></text>
+        <text class="cls-6" transform="translate(249.56 114.54)"><tspan x="0" y="0">C1 vs D1</tspan></text>
+        <rect class="cls-1" x="235.42" y="176.11" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(265.08 172.36)"><tspan x="0" y="0">J11</tspan></text>
+        <text class="cls-6" transform="translate(246.82 192.66)"><tspan x="0" y="0">D2 vs C2</tspan></text>
+        <rect class="cls-1" x="235.42" y="263.81" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(263.55 258.96)"><tspan x="0" y="0">J12</tspan></text>
+        <text class="cls-7" transform="translate(252.82 310.63)"><tspan x="0" y="0">Decide 7º e 8º</tspan></text>
+        <text class="cls-6" transform="translate(247.32 280.36)"><tspan x="0" y="0">B2 vs A2</tspan></text>
+        <text class="cls-3" transform="translate(238.42 293.95)"><tspan x="0" y="0">Perdedor J7 vs Perdedor J8</tspan></text>
+        <rect class="cls-2" x="230.18" y="243.16" width="89.25" height="56.93" rx="8.2" ry="8.2"/>
+        <text class="cls-7" transform="translate(252.99 224.71)"><tspan x="0" y="0">Decide 5º e 6º</tspan></text>
+        <text class="cls-3" transform="translate(237.67 208.03)"><tspan x="0" y="0">Vencedor J7 vs Vencedor J8</tspan></text>
+        <rect class="cls-2" x="230.18" y="157.24" width="89.25" height="56.93" rx="8.2" ry="8.2"/>
+        <text class="cls-7" transform="translate(252.83 145.74)"><tspan x="0" y="0">Decide 3º e 4º</tspan></text>
+        <text class="cls-3" transform="translate(238.55 129.07)"><tspan x="0" y="0">Perdedor J5 vs Perdedor J6</tspan></text>
+        <rect class="cls-2" x="230.18" y="78.27" width="89.25" height="56.93" rx="8.2" ry="8.2"/>
+        <text class="cls-7" transform="translate(253.76 67.97)"><tspan x="0" y="0">Decide 1º e 2º</tspan></text>
+        <text class="cls-3" transform="translate(237.81 51.3)"><tspan x="0" y="0">Vencedor J5 vs Vencedor J6</tspan></text>
+        <rect class="cls-2" x="230.18" y=".5" width="89.25" height="56.93" rx="8.2" ry="8.2"/>
+      </g>
+      <g>
+        <rect x="122.9" y="90.69" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-12" transform="translate(153.91 84.88)"><tspan x="0" y="0">J5</tspan></text>
+        <text class="cls-9" transform="translate(137.29 107.25)"><tspan class="cls-11" x="0" y="0">A1</tspan><tspan class="cls-5" x="15.3" y="0"> </tspan><tspan class="cls-8" x="18.76" y="0">vs C1</tspan></text>
+        <text class="cls-12" transform="translate(153.73 206.53)"><tspan x="0" y="0">J7</tspan></text>
+        <text class="cls-7" transform="translate(115.86 261.33)"><tspan x="0" y="0">Classificação Potencial 5º a 8º</tspan></text>
+        <text class="cls-3" transform="translate(126 243.16)"><tspan x="0" y="0">Perdedor J1 vs Perdedor J3 </tspan></text>
+        <text class="cls-3" transform="translate(123.66 122.43)"><tspan x="0" y="0">Venceedor J1 vs Vencedor J3 </tspan></text>
+        <text class="cls-7" transform="translate(116.44 59.72)"><tspan x="0" y="0">Classificação Potencial 1º a 4º</tspan></text>
+        <rect class="cls-1" x="122.9" y="211.33" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+        <text class="cls-10" transform="translate(133.92 227.88)"><tspan class="cls-11" x="0" y="0">D2</tspan><tspan class="cls-5" x="18.71" y="0" xml:space="preserve"> vs B2</tspan></text>
+        <rect class="cls-2" x="110.7" y="186.42" width="103.16" height="64.02" rx="8.2" ry="8.2"/>
+        <rect class="cls-2" x="110.7" y="65.71" width="103.16" height="64.02" rx="8.2" ry="8.2"/>
+      </g>
+      <rect x="10.37" y="123.73" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+      <text class="cls-12" transform="translate(42.94 115.89)"><tspan x="0" y="0">J1</tspan></text>
+      <text class="cls-9" transform="translate(22.69 140.29)"><tspan class="cls-11" x="0" y="0">A1</tspan><tspan class="cls-5" x="15.3" y="0"> </tspan><tspan class="cls-8" x="18.76" y="0">vs D2</tspan></text>
+      <rect class="cls-1" x="10.37" y="179.45" width="78.77" height="23.05" rx="11.53" ry="11.53"/>
+      <g class="cls-13">
+        <text class="cls-12" transform="translate(41.4 171.6)"><tspan x="0" y="0">J3</tspan></text>
+      </g>
+      <text class="cls-10" transform="translate(23.32 196)"><tspan class="cls-11" x="0" y="0">C1</tspan><tspan class="cls-5" x="14.87" y="0" xml:space="preserve"> vs B2</tspan></text>
+      <text class="cls-7" transform="translate(3.98 84.62)"><tspan x="0" y="0">Classificação Potencial 1º a 8º</tspan></text>
+      <rect class="cls-2" x=".5" y="91.19" width="98.52" height="121" rx="8.2" ry="8.2"/>
+    </g>
+  </g>
+</svg>

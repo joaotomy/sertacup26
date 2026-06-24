@@ -31,11 +31,8 @@ display:block;
 
 .historia-title{
     font-family:var(--font-display);
-    font-size:clamp(4rem,12vw,10rem);
+     font-size:clamp(2rem,10vw,6rem);
     color:var(--main-white);
-
-    text-shadow:
-        0 4px 20px rgba(0,0,0,.35);
 }
 /* =========================
 STORY

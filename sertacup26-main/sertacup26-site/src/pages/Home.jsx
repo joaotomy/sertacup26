@@ -29,7 +29,7 @@ export default function HomePage() {
         CAROUSEL VERSION
 
         const slides = [
-          "/images/hero/herobg1.png",
+          "public/images/hero/herobg1.png",
           "/images/hero/herobg2.png",
           "/images/hero/herobg3.png",
         ];
