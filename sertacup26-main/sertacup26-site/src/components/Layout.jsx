@@ -1,7 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "../styles/site.css";
-import "../styles/index.css";
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,9 +26,9 @@ export default function Layout() {
           </div>
 
           <div className="logo-container desktop-logo">
-            {/* <Link to="/"> */}
+           <Link to="/"> 
               <img src="/images/logo.png" alt="logo" className="logo" />
-            {/* </Link> */}
+           </Link>
           </div>
 
           <div className="nav-section">

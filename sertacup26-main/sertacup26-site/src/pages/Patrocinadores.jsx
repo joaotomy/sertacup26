@@ -1,6 +1,5 @@
 import "../styles/patron.css";
 import "../styles/site.css";
-import "../styles/index.css";
 
 export default function Patrocinadores() {
   const logos = [

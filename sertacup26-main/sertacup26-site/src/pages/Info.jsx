@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/info.css";
 import "../styles/site.css";
-import "../styles/index.css";
 
 export default function Info() {
   const [teams, setTeams] = useState([]);

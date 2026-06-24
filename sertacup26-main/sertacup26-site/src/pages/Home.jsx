@@ -1,34 +1,57 @@
 import "../styles/site.css";
-import "../styles/index.css";
+import "../styles/hero.css";
 
 export default function HomePage() {
   return (
-    <>
-      <section className="hero">
-        <div className="hero-overlay"></div>
+    <section className="hero">
+      <div
+        className="hero-bg"
+        style={{
+          backgroundImage: "url('/images/hero/herobg1.jpg')",
+        }}
+      />
 
-        <div className="grid-container">
-          <div className="col-span-4 col-start-1 hero-cup-wrapper">
-            <img
-              src="/images/cup.png"
-              alt="Taça Sertã 1  Cup"
-              className="hero-cup-img"
-            />
-          </div>
+      <div className="hero-overlay" />
 
-          <div className="col-span-6 col-start-6 md:col-span-5 md:col-start-4 sm:col-span-4 sm:col-start-1 hero-text">
-            <div className="hero-title">II SERTÃ CUP</div>
+      <div className="hero-content">
+        <div className="hero-title">V SERTÃ CUP</div>
 
-            <div className="hero-subtitle">20 e 21 JUNHO</div>
+        <div className="hero-bottom">
+          <div className="hero-subtitle">25 A 28 JUNHO</div>
 
-            <div className="cta-wrapper">
-              <a className="cta" href="/torneio?tab=calendario">
-                EM DIRETO
-              </a>
-            </div>
-          </div>
+          <a className="cta" href="/torneio?tab=calendario">
+            EM DIRETO
+          </a>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/*
+        CAROUSEL VERSION
+
+        const slides = [
+          "/images/hero/herobg1.png",
+          "/images/hero/herobg2.png",
+          "/images/hero/herobg3.png",
+        ];
+
+        const [currentSlide, setCurrentSlide] = useState(0);
+
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+          }, 6000);
+
+          return () => clearInterval(interval);
+        }, []);
+
+        Then replace:
+
+        backgroundImage: "url('/images/hero/herobg1.png')"
+
+        with:
+
+        backgroundImage: `url(${slides[currentSlide]})`
+      */}
+    </section>
   );
 }
