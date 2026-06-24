@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/jogo.css";
 
-export default function MatchAccess() {
+export default function GameHomepage() {
   const [gameId, setGameId] = useState("");
   const [chave, setChave] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const apiUrl = 'http://localhost:3000'
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -14,7 +15,7 @@ export default function MatchAccess() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/admin/game-access`,
+        `${apiUrl}/game-access`,
         {
           method: "POST",
           headers: {

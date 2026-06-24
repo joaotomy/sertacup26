@@ -64,6 +64,11 @@ app.get('/games', async (req, res) => {
       WHERE 1=1
     `;
 
+    if (req.query.id) {
+      query += ` AND id = @id`;
+      request.input('id', sql.Int, req.query.id);
+    }
+
     if (req.query.chave) {
       query += ` AND chave = @chave`;
       request.input('chave', sql.VarChar, req.query.chave);
@@ -125,23 +130,23 @@ app.get('/games', async (req, res) => {
       ...j,
 
       hora_prevista: j.hora_prevista
-      ?.toISOString()
-      .replace('Z', ''),
+        ?.toISOString()
+        .replace('Z', ''),
 
-    hora_inicio: j.hora_inicio
-      ?.toISOString()
-      .replace('Z', ''),
+      hora_inicio: j.hora_inicio
+        ?.toISOString()
+        .replace('Z', ''),
 
-    hora_inicio_2parte: j.hora_inicio_2parte
-      ?.toISOString()
-      .replace('Z', ''),
+      hora_inicio_2parte: j.hora_inicio_2parte
+        ?.toISOString()
+        .replace('Z', ''),
 
       Estado:
         j.terminado ? 'Resultado Final' :
-        j.segunda_parte_comecada ? '2ªP' :
-        j.primeira_parte_terminada ? 'Intervalo' :
-        j.começado ? '1ªP' :
-        'Agendado'
+          j.segunda_parte_comecada ? '2ªP' :
+            j.primeira_parte_terminada ? 'Intervalo' :
+              j.começado ? '1ªP' :
+                'Agendado'
     }));
 
     res.json(jogos);

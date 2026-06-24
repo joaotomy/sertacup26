@@ -10,6 +10,7 @@ import Historia from "./pages/Historia";
 import Patrocinadores from "./pages/Patrocinadores";
 import GameHomepage from "./pages/GameHomepage";
 import About from "./pages/About";
+import GameAdmin from "./pages/GameAdmin";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="patrocinadores" element={<Patrocinadores />} />
         <Route path="jogo" element={<GameHomepage />} />
         <Route path="about" element={<About />} />
+        <Route path="/admin/game/:id" element={<GameAdmin />} />
       </Route>
     </Routes>
   );

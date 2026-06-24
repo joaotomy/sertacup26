@@ -1,0 +1,93 @@
+﻿.game-admin {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+.game-admin-card {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 40px;
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  text-align: center;
+}
+
+.game-admin-card h1 {
+  margin-bottom: 20px;
+}
+
+.score {
+  font-size: 3rem;
+  margin: 20px 0;
+}
+
+.status {
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.teams-container {
+  display: flex;
+  gap: 32px;
+  margin: 32px 0;
+}
+
+.team-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.team-section h3 {
+  margin-bottom: 8px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+hr {
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .game-admin-card {
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .teams-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .score {
+    font-size: 2.5rem;
+  }
+}
