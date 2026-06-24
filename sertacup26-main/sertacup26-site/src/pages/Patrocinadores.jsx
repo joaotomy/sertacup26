@@ -1,58 +1,47 @@
-import { useEffect, useState } from "react";
 import "../styles/patron.css";
 import "../styles/site.css";
 import "../styles/index.css";
 
 export default function Patrocinadores() {
-  const [logos, setLogos] = useState([]);
-
-  useEffect(() => {
-
-    const data = [
-      "freguesia_serta.png",
-      "palser.png",
-      "pinhoser.png",
-      "stand_frigi.png",
-      "joao_maia.png",
-      "freguesia_cernache.png",
-      "ricardo_ribeiro_pinturas.png",
-      "nuno_flor.png",
-      "opticalia.png",
-      "pronto_vestir_farinha.png",
-      "rf_engenharia.png",
-      "serta_municipio.png",
-      "sma.png",
-      "chicos_ferro.png",
-      "jimafer.png",
-      "focar_momentos.png",
-      "laranjeira_lopes.png",
-      "auto_acessorios.png",
-      "as_consulting.png",
-      "confeitaria_artesenal.png"
-      
-    ];
-
-    setLogos(data);
-  }, []);
+  const logos = [
+    {
+      image: "freguesia_serta.png",
+      url: "https://example.com"
+    },
+    {
+      image: "palser.png",
+      url: "https://example.com"
+    },
+    {
+      image: "pinhoser.png",
+      url: "https://example.com"
+    }
+  ];
 
   return (
-    <section className="patron-section">
-      <div className="text-header">
-        <div>OS QUE TORNAM ISTO POSSÍVEL</div>
+    <section className="partners-page">
+      <div className="partners-logo-scroller">
+        <div className="partners-logo-track">
+          {[0, 1].map((dup) =>
+            logos.map((logo, i) => (
+              <a
+                key={`${dup}-${i}`}
+                className="partners-logo-item"
+                href={logo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={`/images/patron/${logo.image}`}
+                  alt=""
+                />
+              </a>
+            ))
+          )}
+        </div>
       </div>
-
-      <div className="logo-scroller">
-        {[0, 1].map((dup) =>
-          logos.map((logo, i) => (
-            <div className="logo-item" key={`${dup}-${i}`}>
-              <img src={`/images/patron/${logo}`} alt="Patrocinador" />
-            </div>
-          ))
-        )}
-      </div>
-
-      <div className="text-footer">
-        <div>A TODOS O NOSSO OBRIGADO</div>
+      <div className="partners-sticky-text">
+        <p>Os que tornam isto possível</p>
       </div>
     </section>
   );
