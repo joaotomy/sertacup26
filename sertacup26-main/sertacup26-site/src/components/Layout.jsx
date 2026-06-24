@@ -12,7 +12,17 @@ export default function Layout() {
         <div className="nav-wrapper">
 
           <div className="nav-section">
-            <Link to="/info" className="nav-item">INFORMAÇÕES</Link>
+             <div className="dropdown">
+              <Link to="/info" className="nav-item">INFORMAÇÕES</Link>
+
+              <div className="dropdown-content">
+                <Link to="/info?tab=horarios">Horários</Link>
+                <Link to="/info?tab=mapa">Mapa</Link>
+                <Link to="/info?tab=formato">Formato</Link>
+                 <Link to="/info?tab=participantes">Participantes</Link>
+                <Link to="/info?tab=seguranca">Segurança</Link>
+              </div>
+            </div>
 
             <div className="dropdown">
               <Link to="/torneio" className="nav-item">TORNEIO</Link>
