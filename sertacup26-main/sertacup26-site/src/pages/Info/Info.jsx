@@ -2,11 +2,28 @@ import HorariosSection from "./sections/HorariosSection";
 import MapaSection from "./sections/MapaSection";
 import FormatoSection from "./sections/FormatoSection";
 import ParticipantesSection from "./sections/ParticipantesSection";
-import SegurancaSection from "./sections/SegurancaSection";
 
 import "../../styles/info.css";
 
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 export default function InfoPage() {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash) {
+            const el = document.querySelector(location.hash);
+
+            if (el) {
+                el.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        }
+    }, [location]);
+
     return (
         <div className="info-page">
 
@@ -25,11 +42,6 @@ export default function InfoPage() {
             <section id="participantes">
                 <ParticipantesSection />
             </section>
-
-            <section id="seguranca">
-                <SegurancaSection />
-            </section>
-
         </div>
     );
 }
