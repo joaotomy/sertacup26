@@ -2,6 +2,11 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "../styles/site.css";
 
+const closeMenu = () => {
+  setMenuOpen(false);
+  setSubOpen(false);
+};
+
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
@@ -62,22 +67,22 @@ export default function Layout() {
 
       {menuOpen && (
         <div className="mobile-menu">
-          <Link to="/info" className="disabled-link">INFORMAÇÕES</Link>
+          <Link to="/info" onClick={closeMenu}>INFORMAÇÕES</Link>
 
           <div className="dropdown-mobile">
             <span onClick={() => setSubOpen(!subOpen)}>TORNEIO</span>
 
             {subOpen && (
-              <div className="mobile-submenu">
-                <Link to="/torneio?tab=calendario">Calendário</Link>
-                <Link to="/torneio?tab=grupos">Grupos</Link>
+              <div className="mobile-submenu" >
+                <Link to="/torneio?tab=calendario" onClick={closeMenu}>Calendário</Link>
+                <Link to="/torneio?tab=grupos" onClick={closeMenu}>Grupos</Link>
                 {/* <Link to="/torneio?tab=fases-finais">Fases Finais</Link> */}
               </div>
             )}
           </div>
 
-          <Link to="/historia" className="disabled-link">HISTÓRIA</Link>
-          <Link to="/patrocinadores" className="disabled-link">PATROCINADORES</Link>
+          <Link to="/historia" onClick={closeMenu}>HISTÓRIA</Link>
+          <Link to="/patrocinadores" onClick={closeMenu}>PATROCINADORES</Link>
         </div>
       )}
 
