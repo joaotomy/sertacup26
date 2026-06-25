@@ -521,7 +521,7 @@ function getEstado(j, now) {
     if (j.hora_inicio_2parte) {
       
       const mins = Math.floor(
-        (now - new Date(j.hora_inicio_2parte)) / 60000
+        (now - new Date(j.hora_inicio)) / 60000
       );
       return `${mins}'`;
     }
