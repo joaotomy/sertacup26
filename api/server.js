@@ -439,45 +439,6 @@ app.post('/goals', async (req, res) => {
   }
 });
 
-app.put('/group-stats/:idequipa', async (req, res) => {
-  try {
-    const {
-      jogos,
-      vitorias,
-      empates,
-      derrotas,
-      golos_marcados,
-      golos_sofridos
-    } = req.body;
-
-    const pool = await poolPromise;
-
-    await pool.request()
-      .input('idequipa', sql.Int, req.params.idequipa)
-      .input('jogos', sql.Int, jogos)
-      .input('vitorias', sql.Int, vitorias)
-      .input('empates', sql.Int, empates)
-      .input('derrotas', sql.Int, derrotas)
-      .input('golos_marcados', sql.Int, golos_marcados)
-      .input('golos_sofridos', sql.Int, golos_sofridos)
-      .query(`
-        UPDATE equipa_stats_grupo
-        SET
-          jogos = @jogos,
-          vitorias = @vitorias,
-          empates = @empates,
-          derrotas = @derrotas,
-          golos_marcados = @golos_marcados,
-          golos_sofridos = @golos_sofridos
-        WHERE idequipa = @idequipa
-      `);
-
-    res.json({ success: true });
-
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
 
 
 app.put('/group-stats/:idequipa', async (req, res) => {
