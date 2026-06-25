@@ -11,51 +11,93 @@ const scheduleData = {
     day1: {
         morning: [
             {
-                title: "Bloco 1",
-                time: "09:00 - 10:30",
-                items: [
-                    {
-                        title: "Jogo 1",
-                        location: "Campo 1"
-                    },
-                    {
-                        title: "Jogo 2",
-                        location: "Campo 2"
-                    }
-                ]
+                title: "JOGO DE ABERTURA",
+                time: "11:00",
             }
         ],
         afternoon: [
             {
-                title: "Bloco 2",
-                time: "14:00 - 15:30",
-                items: [
-                    {
-                        title: "Jogo 3",
-                        location: "Campo 1"
-                    }
-                ]
+                title: "JOGOS",
+                time: "15:00 - 19:00",
             }
         ],
-        night: []
+        night: [
+            {
+                title: "JOGOS",
+                time: "20:00 - 23:00",
+            }
+        ]
     },
 
     day2: {
-        morning: [],
-        afternoon: [],
-        night: []
+        morning: [
+            {
+                title: "JOGOS",
+                time: "10:00 - 12:00",
+            }
+        ],
+        afternoon: [
+            {
+                title: "JOGOS",
+                time: "15:00 - 17:00",
+            }
+        ],
+        night: [
+            {
+                title: "JOGOS",
+                time: "20:00 - 22:00",
+            }
+        ]
     },
 
     day3: {
-        morning: [],
-        afternoon: [],
-        night: []
+        morning: [
+            {
+                title: "JOGOS",
+                time: "10:00 - 12:00",
+            }
+        ],
+        afternoon: [
+            {
+                title: "JOGOS",
+                time: "15:00 - 17:00",
+            }
+        ],
+        night: [
+            {
+                title: "JOGOS",
+                time: "20:00 - 22:00",
+            },
+                              {
+                title: "DJ KADIV",
+                time: "22:30 - 00:30",
+            },
+                                        {
+                title: "TRANSMISSÃO PORTUGAL",
+                time: "00:30",
+            }
+        ]
     },
 
     day4: {
-        morning: [],
-        afternoon: [],
-        night: []
+        morning: [
+            {
+                title: "JOGOS",
+                time: "10:00 - 13:00",
+            }
+        ],
+        afternoon: [
+            {
+                title: "FINAIS",
+                time: "15:00 - 18:00",
+            },
+                        {
+                title: "ENTREGA DE PRÉMIOS",
+                time: "18:00",
+            }
+        ],
+        night: [
+        ]
     }
 };
 
@@ -150,28 +192,13 @@ export default function HorariosSection() {
 function ScheduleBlock({ block }) {
     return (
         <div className="schedule-block">
-
-            <div className="schedule-block-title">{block.title}</div>
+            <div className="schedule-block-title">
+                {block.title}
+            </div>
 
             <div className="schedule-time">
                 {block.time}
             </div>
-
-            {block.items.map((item, index) => (
-                <div
-                    key={index}
-                    className="schedule-item"
-                >
-                    <strong>
-                        {item.title}
-                    </strong>
-
-                    <span>
-                        {item.location}
-                    </span>
-                </div>
-            ))}
-
         </div>
     );
 }

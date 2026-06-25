@@ -4,17 +4,12 @@ const maps = [
     {
         id: "campos",
         label: "Campos",
-        image: "/images/maps/campos.png"
+        image: "/images/SVG/mapa-campo.svg"
     },
     {
         id: "balnearios",
         label: "Balneários",
-        image: "/images/maps/balnearios.png"
-    },
-    {
-        id: "secretariado",
-        label: "Secretariado",
-        image: "/images/maps/secretariado.png"
+        image: "/images/SVG/mapa-baln.svg"
     }
 ];
 
