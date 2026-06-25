@@ -14,6 +14,26 @@ export default function Patrocinadores() {
     {
       image: "pinhoser.png",
       url: "https://example.com"
+    },
+    {
+      image: "serta_municipio.png",
+      url: "https://example.com"
+    },
+        {
+      image: "stand_frigi.png",
+      url: "https://example.com"
+    },
+        {
+      image: "opticalia.jpg",
+      url: "https://example.com"
+    },
+        {
+      image: "focar_momentos.png",
+      url: "https://example.com"
+    },
+            {
+      image: "ricardo_ribeiro_pinturas.png",
+      url: "https://example.com"
     }
   ];
 

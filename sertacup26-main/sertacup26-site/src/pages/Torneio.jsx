@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import "../styles/torneio.css";
 
 const apiUrl = "https://sertanense.pt/api";
@@ -147,7 +147,7 @@ function formatTime(date) {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function CalGame({ j, now }) {
+const CalGame = forwardRef(({ j, now }, ref) => {
   const [expanded, setExpanded] = useState(false);
 
   const estadoDisplay = getEstado(j, now);
@@ -183,6 +183,7 @@ function CalGame({ j, now }) {
 
   return (
     <div
+      ref={ref}
       className={`cal-game ${estadoClass}${expanded ? " expanded" : ""}`}
     >
       <div className="cal-teams">
@@ -209,6 +210,7 @@ function CalGame({ j, now }) {
           <span className="cal-team-name">{j.equipa2}</span>
         </div>
       </div>
+
       {hasGoals && expanded && (
         <div className="cal-scorers">
           <div className="scorer-left">
@@ -219,13 +221,14 @@ function CalGame({ j, now }) {
           </div>
         </div>
       )}
+
       <div className="cal-details">
         <span className="cal-group">{j.situacao_precaria}</span>
         <span className="cal-field remove">Campo {j.Campo}</span>
       </div>
     </div>
   );
-}
+});
 
 function FFGame({ jogo }) {
   if (!jogo) return null;
@@ -277,6 +280,9 @@ function FFGame({ jogo }) {
 function CalendarioTab({ jogos }) {
   const [now, setNow] = useState(new Date());
 
+  const liveGameRef = useRef(null);
+  const hasScrolled = useRef(false);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(new Date());
@@ -285,6 +291,17 @@ function CalendarioTab({ jogos }) {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (!hasScrolled.current && liveGameRef.current) {
+      hasScrolled.current = true;
+
+      liveGameRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [jogos, now]);
+
   const jogosOrdenados = jogos
     .filter(j => j.equipa1 && j.equipa2 && j.equipa1 !== "0" && j.equipa2 !== "0")
     .map(j => ({
@@ -292,11 +309,11 @@ function CalendarioTab({ jogos }) {
       Fase: j.Fase ?? (j.grupo === "0" ? "FASE FINAL" : "FASE DE GRUPOS"),
     }))
     .sort((a, b) => {
-      if (a.horaPrevista - b.horaPrevista !== 0) return a.horaPrevista - b.horaPrevista;
+      if (a.horaPrevista - b.horaPrevista !== 0)
+        return a.horaPrevista - b.horaPrevista;
       return (a.Fase === "FASE FINAL" ? 1 : 0) - (b.Fase === "FASE FINAL" ? 1 : 0);
     });
 
-  // Group by date
   const byDate = {};
   for (const j of jogosOrdenados) {
     const key = j.horaPrevista.toDateString();
@@ -304,11 +321,13 @@ function CalendarioTab({ jogos }) {
     byDate[key].games.push(j);
   }
 
+  let assignedLiveRef = false;
+
   return (
     <div id="calendario" className="tab-content active">
       {Object.values(byDate).map(({ date, games }) => {
-        // Group by hour then by Fase
         const byHour = {};
+
         for (const j of games) {
           const h = j.horaPrevista.getHours();
           if (!byHour[h]) byHour[h] = { hora: j.horaPrevista, games: [] };
@@ -316,12 +335,16 @@ function CalendarioTab({ jogos }) {
         }
 
         return (
-          <div key={date.toDateString()} className="cal-day" data-date={date.toISOString().split("T")[0]}>
+          <div
+            key={date.toDateString()}
+            className="cal-day"
+            data-date={date.toISOString().split("T")[0]}
+          >
             <div className="cal-fixed-header">{formatDate(date)}</div>
 
             {Object.values(byHour).map(({ hora, games: hGames }) => {
-              // Group by Fase
               const byFase = {};
+
               for (const j of hGames) {
                 if (!byFase[j.Fase]) byFase[j.Fase] = [];
                 byFase[j.Fase].push(j);
@@ -331,10 +354,34 @@ function CalendarioTab({ jogos }) {
                 <div key={`${hora}-${fase}`} className="cal-time-block">
                   <div className="cal-time-header">
                     <span className="cal-time">{formatTime(hora)}</span>
-                    <span className="cal-livetag"><span className="live-dot"></span> AO VIVO</span>
+                    <span className="cal-livetag">
+                      <span className="live-dot"></span> AO VIVO
+                    </span>
                     <span className="cal-phase">{fase}</span>
                   </div>
-                  {faseGames.map(j => <CalGame key={j.Id} j={j} now={now} />)}
+
+                  {faseGames.map(j => {
+                    const estado = getEstado(j, now);
+                    const isLive =
+                      j.começado &&
+                      estado !== "Resultado Final" &&
+                      estado !== "Intervalo";
+
+                    let ref = null;
+                    if (isLive && !assignedLiveRef) {
+                      ref = liveGameRef;
+                      assignedLiveRef = true;
+                    }
+
+                    return (
+                      <CalGame
+                        key={j.Id}
+                        ref={ref}
+                        j={j}
+                        now={now}
+                      />
+                    );
+                  })}
                 </div>
               ));
             })}

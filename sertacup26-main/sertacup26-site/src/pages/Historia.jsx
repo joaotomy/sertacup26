@@ -67,10 +67,13 @@ return ( <main className="historia-page">
 
       <div
         className="
-        historia-text
-        col-span-8
-        md:col-span-6
-        sm:col-span-4
+    historia-text
+    col-span-8
+    col-start-3
+    md:col-span-6
+    md:col-start-2
+    sm:col-span-4
+    sm:col-start-1
       "
       >
         <p>
