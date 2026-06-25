@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import "../styles/torneio.css";
 
-const apiUrl = "https://sertanense.pt/api"; 
+const apiUrl = "https://sertanense.pt/api";
 let countGetPlacement = 0;
 // ─── Placeholder Data ────────────────────────────────────────────────────────
 
@@ -63,10 +63,11 @@ let countGetPlacement = 0;
 
 // ─── FF Config ───────────────────────────────────────────────────────────────
 
-const teamCounts = { 
+const teamCounts = {
   //champs: 16, europa: 8, 
-  conference: 4, 
-  feminina: 4 };
+  conference: 4,
+  feminina: 4
+};
 
 const leagueRounds = {
   // champs: [
@@ -86,14 +87,14 @@ const leagueRounds = {
   //   { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["51","52"], GapLevel: 0 },
   // ],
   conference: [
-    { Title: "Meias Finais", Side: "left",   BoxCount: 1, GamesPerBox: 1, Jogos: ["17"], GapLevel: 1 },
-    { Title: "Finais",       Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["23","24"], GapLevel: 3 },
-    { Title: "Meias Finais", Side: "right",  BoxCount: 1, GamesPerBox: 1, Jogos: ["18"], GapLevel: 1 },
+    { Title: "Meias Finais", Side: "left", BoxCount: 1, GamesPerBox: 1, Jogos: ["17"], GapLevel: 1 },
+    { Title: "Finais", Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["23", "24"], GapLevel: 3 },
+    { Title: "Meias Finais", Side: "right", BoxCount: 1, GamesPerBox: 1, Jogos: ["18"], GapLevel: 1 },
   ],
   feminina: [
-    { Title: "Meias Finais", Side: "left",   BoxCount: 1, GamesPerBox: 1, Jogos: ["19"], GapLevel: 1 },
-    { Title: "Finais",       Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["21","22"], GapLevel: 3 },
-    { Title: "Meias Finais", Side: "right",  BoxCount: 1, GamesPerBox: 1, Jogos: ["20"], GapLevel: 1 },
+    { Title: "Meias Finais", Side: "left", BoxCount: 1, GamesPerBox: 1, Jogos: ["19"], GapLevel: 1 },
+    { Title: "Finais", Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["21", "22"], GapLevel: 3 },
+    { Title: "Meias Finais", Side: "right", BoxCount: 1, GamesPerBox: 1, Jogos: ["20"], GapLevel: 1 },
   ],
 };
 
@@ -101,7 +102,7 @@ const allLeagues = [
   // { Key: "champs",     Name: "Liga dos Campeões PALSER" },
   // { Key: "europa",     Name: "Liga Europa PINHOSER" },
   { Key: "conference", Name: "Sertã Cup Feminina - 1º ao 4º lugar" },
-  { Key: "feminina",   Name: "Sertã Cup Feminina - 5º ao 8º lugar" },
+  { Key: "feminina", Name: "Sertã Cup Feminina - 5º ao 8º lugar" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -115,7 +116,7 @@ const allLeagues = [
 // }
 
 function getPlacementRange(totalPlacements, boxCount, boxIndex) {
-  countGetPlacement ++;
+  countGetPlacement++;
 
   if (countGetPlacement == 13)
     return `5º–8º LUGAR`;
@@ -132,7 +133,7 @@ function getPlacementRange(totalPlacements, boxCount, boxIndex) {
   const rangeSize = Math.floor(totalPlacements / boxCount);
   const start = boxIndex * rangeSize + 1;
   const end = (boxIndex + 1) * rangeSize;
-  return `${start}º–${end}º LUGAR`; 
+  return `${start}º–${end}º LUGAR`;
 }
 function formatDate(date) {
   return date.toLocaleDateString("pt-PT", { day: "2-digit", month: "short" })
@@ -145,10 +146,10 @@ function formatTime(date) {
 
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-   
+
 function CalGame({ j, now }) {
   const [expanded, setExpanded] = useState(false);
-  
+
   const estadoDisplay = getEstado(j, now);
 
   const terminado = estadoDisplay === "Resultado Final";
@@ -181,7 +182,9 @@ function CalGame({ j, now }) {
   const hasGoals = parseInt(g1) > 0 || parseInt(g2) > 0;
 
   return (
-    <div className={`cal-game ${estadoClass}${expanded ? " expanded" : ""}`} onClick={() => setExpanded(e => !e)}>
+    <div
+      className={`cal-game ${estadoClass}${expanded ? " expanded" : ""}`}
+    >
       <div className="cal-teams">
         <div className={`cal-team-block ${class1}`}>
           <img src={`/images/teams/${encodeURIComponent(j.equipa1)}.png`} alt={j.equipa1} className="cal-team-logo" />
@@ -519,7 +522,7 @@ function getEstado(j, now) {
 
   if (j.segunda_parte_comecada) {
     if (j.hora_inicio_2parte) {
-      
+
       const mins = Math.floor(
         (now - new Date(j.hora_inicio)) / 60000
       );
