@@ -53,109 +53,109 @@ app.get('/groups', async (req, res) => {
 });
 
 
-  app.get('/games', async (req, res) => {
-    try {
-      const pool = await poolPromise;
-      const request = pool.request();
+app.get('/games', async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const request = pool.request();
 
-      let query = ` 
+    let query = ` 
         SELECT *
         FROM vwjogo
         WHERE 1=1
       `;
 
-      
-      if (req.query.id) {
-        query += ` AND id = @id`;
-        request.input('id', sql.Int, req.query.id);
-      }
 
-      if (req.query.chave) {
-        query += ` AND chave = @chave`;
-        request.input('chave', sql.VarChar, req.query.chave);
-      }
-
-      if (req.query.equipa1) {
-        query += ` AND idequipa1 = @equipa1`;
-        request.input('equipa1', sql.Int, req.query.equipa1);
-      }
-
-      if (req.query.equipa2) {
-        query += ` AND idequipa2 = @equipa2`;
-        request.input('equipa2', sql.Int, req.query.equipa2);
-      }
-
-      if (req.query.campo) {
-        query += ` AND campoid = @campo`;
-        request.input('campo', sql.Int, req.query.campo);
-      }
-
-      if (req.query.grupo) {
-        query += ` AND grupoid = @grupo`;
-        request.input('grupo', sql.Int, req.query.grupo);
-      }
-
-      if (req.query.fase) {
-        query += ` AND fase = @fase`;
-        request.input('fase', sql.Int, req.query.fase);
-      }
-
-      if (req.query.liga) {
-        query += ` AND liga = @liga`;
-        request.input('liga', sql.Int, req.query.liga);
-      }
-
-      if (req.query.comecado !== undefined) {
-        query += ` AND começado = @comecado`;
-        request.input('comecado', sql.Bit, req.query.comecado === 'true');
-      }
-
-      if (req.query.terminado !== undefined) {
-        query += ` AND terminado = @terminado`;
-        request.input('terminado', sql.Bit, req.query.terminado === 'true');
-      }
-
-      if (req.query.jogo_grupo !== undefined) {
-        query += ` AND jogo_grupo = @jogo_grupo`;
-        request.input('jogo_grupo', sql.Bit, req.query.jogo_grupo === 'true');
-      }
-
-      if (req.query.data) {
-        query += ` AND CAST(hora_prevista AS DATE) = @data`;
-        request.input('data', sql.Date, req.query.data);
-      }
-
-      const result = await request.query(query);
-
-      const jogos = result.recordset.map(j => ({
-        ...j,
-
-        hora_prevista: j.hora_prevista
-          ?.toISOString()
-          .replace('Z', ''),
-
-        hora_inicio: j.hora_inicio
-          ?.toISOString()
-          .replace('Z', ''),
-
-        hora_inicio_2parte: j.hora_inicio_2parte
-          ?.toISOString()
-          .replace('Z', ''),
-
-        Estado: 
-          j.terminado ? 'Resultado Final' :
-            j.segunda_parte_comecada ? '2ªP' :
-              j.primeira_parte_terminada ? 'Intervalo' :
-                j.começado ? '1ªP' :
-                  'Agendado'
-      }));
-
-      res.json(jogos);
-
-    } catch (err) {
-      res.status(500).send(err.message);
+    if (req.query.id) {
+      query += ` AND id = @id`;
+      request.input('id', sql.Int, req.query.id);
     }
-  });
+
+    if (req.query.chave) {
+      query += ` AND chave = @chave`;
+      request.input('chave', sql.VarChar, req.query.chave);
+    }
+
+    if (req.query.equipa1) {
+      query += ` AND idequipa1 = @equipa1`;
+      request.input('equipa1', sql.Int, req.query.equipa1);
+    }
+
+    if (req.query.equipa2) {
+      query += ` AND idequipa2 = @equipa2`;
+      request.input('equipa2', sql.Int, req.query.equipa2);
+    }
+
+    if (req.query.campo) {
+      query += ` AND campoid = @campo`;
+      request.input('campo', sql.Int, req.query.campo);
+    }
+
+    if (req.query.grupo) {
+      query += ` AND grupoid = @grupo`;
+      request.input('grupo', sql.Int, req.query.grupo);
+    }
+
+    if (req.query.fase) {
+      query += ` AND fase = @fase`;
+      request.input('fase', sql.Int, req.query.fase);
+    }
+
+    if (req.query.liga) {
+      query += ` AND liga = @liga`;
+      request.input('liga', sql.Int, req.query.liga);
+    }
+
+    if (req.query.comecado !== undefined) {
+      query += ` AND começado = @comecado`;
+      request.input('comecado', sql.Bit, req.query.comecado === 'true');
+    }
+
+    if (req.query.terminado !== undefined) {
+      query += ` AND terminado = @terminado`;
+      request.input('terminado', sql.Bit, req.query.terminado === 'true');
+    }
+
+    if (req.query.jogo_grupo !== undefined) {
+      query += ` AND jogo_grupo = @jogo_grupo`;
+      request.input('jogo_grupo', sql.Bit, req.query.jogo_grupo === 'true');
+    }
+
+    if (req.query.data) {
+      query += ` AND CAST(hora_prevista AS DATE) = @data`;
+      request.input('data', sql.Date, req.query.data);
+    }
+
+    const result = await request.query(query);
+
+    const jogos = result.recordset.map(j => ({
+      ...j,
+
+      hora_prevista: j.hora_prevista
+        ?.toISOString()
+        .replace('Z', ''),
+
+      hora_inicio: j.hora_inicio
+        ?.toISOString()
+        .replace('Z', ''),
+
+      hora_inicio_2parte: j.hora_inicio_2parte
+        ?.toISOString()
+        .replace('Z', ''),
+
+      Estado:
+        j.terminado ? 'Resultado Final' :
+          j.segunda_parte_comecada ? '2ªP' :
+            j.primeira_parte_terminada ? 'Intervalo' :
+              j.começado ? '1ªP' :
+                'Agendado'
+    }));
+
+    res.json(jogos);
+
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
 
 app.post('/games/:id/start', async (req, res) => {
   try {
@@ -430,6 +430,87 @@ app.post('/goals', async (req, res) => {
           NULL,
           DATEADD(HOUR, 1, GETDATE()) 
         )
+      `);
+
+    res.json({ success: true });
+
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+app.put('/group-stats/:idequipa', async (req, res) => {
+  try {
+    const {
+      jogos,
+      vitorias,
+      empates,
+      derrotas,
+      golos_marcados,
+      golos_sofridos
+    } = req.body;
+
+    const pool = await poolPromise;
+
+    await pool.request()
+      .input('idequipa', sql.Int, req.params.idequipa)
+      .input('jogos', sql.Int, jogos)
+      .input('vitorias', sql.Int, vitorias)
+      .input('empates', sql.Int, empates)
+      .input('derrotas', sql.Int, derrotas)
+      .input('golos_marcados', sql.Int, golos_marcados)
+      .input('golos_sofridos', sql.Int, golos_sofridos)
+      .query(`
+        UPDATE equipa_stats_grupo
+        SET
+          jogos = @jogos,
+          vitorias = @vitorias,
+          empates = @empates,
+          derrotas = @derrotas,
+          golos_marcados = @golos_marcados,
+          golos_sofridos = @golos_sofridos
+        WHERE idequipa = @idequipa
+      `);
+
+    res.json({ success: true });
+
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+
+app.put('/group-stats/:idequipa', async (req, res) => {
+  try {
+    const {
+      jogos,
+      vitorias,
+      empates,
+      derrotas,
+      golos_marcados,
+      golos_sofridos
+    } = req.body;
+
+    const pool = await poolPromise;
+
+    await pool.request()
+      .input('idequipa', sql.Int, req.params.idequipa)
+      .input('jogos', sql.Int, jogos)
+      .input('vitorias', sql.Int, vitorias)
+      .input('empates', sql.Int, empates)
+      .input('derrotas', sql.Int, derrotas)
+      .input('golos_marcados', sql.Int, golos_marcados)
+      .input('golos_sofridos', sql.Int, golos_sofridos)
+      .query(`
+        UPDATE equipa_stats_grupo
+        SET
+          jogos = jogos + @jogos,
+          vitorias = vitorias + @vitorias,
+          empates = empates + @empates,
+          derrotas = derrotas + @derrotas,
+          golos_marcados = golos_marcados + @golos_marcados,
+          golos_sofridos = golos_sofridos + @golos_sofridos
+        WHERE idequipa = @idequipa
       `);
 
     res.json({ success: true });

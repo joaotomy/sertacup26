@@ -353,6 +353,42 @@ export default function GameAdmin() {
                       )
                     );
 
+                    if (game.jogo_grupo) {
+                      const homeWon = homeGoals > awayGoals;
+                      const awayWon = awayGoals > homeGoals;
+                      const draw = homeGoals === awayGoals;
+
+                      await fetch(`${apiUrl}/group-stats/${game.idequipa1}`, {
+                        method: "PUT",
+                        headers: {
+                          "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                          jogos: 1,
+                          vitorias: homeWon ? 1 : 0,
+                          empates: draw ? 1 : 0,
+                          derrotas: awayWon ? 1 : 0,
+                          golos_marcados: homeGoals,
+                          golos_sofridos: awayGoals
+                        })
+                      });
+
+                      await fetch(`${apiUrl}/group-stats/${game.idequipa2}`, {
+                        method: "PUT",
+                        headers: {
+                          "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                          jogos: 1,
+                          vitorias: awayWon ? 1 : 0,
+                          empates: draw ? 1 : 0,
+                          derrotas: homeWon ? 1 : 0,
+                          golos_marcados: awayGoals,
+                          golos_sofridos: homeGoals
+                        })
+                      });
+                    }
+
                     await fetch(`${apiUrl}/games/${game.id}/end`, {
                       method: "POST"
                     });
