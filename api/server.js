@@ -428,7 +428,7 @@ app.post('/goals', async (req, res) => {
           @idjogo,
           @idjogador,
           NULL,
-          DATEADD(HOUR, 1, GETDATE())
+          DATEADD(HOUR, 1, GETDATE()) 
         )
       `);
 
