@@ -1,8 +1,14 @@
 ﻿.partners-page {
-    width: 100%;
+ width: 100%;
     min-height: 100vh;
     background: white;
-    padding: 4rem 0 80px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-bottom: 15vh; /* height of sticky footer */
+    box-sizing: border-box;
 }
 
 .partners-sticky-text {
@@ -34,6 +40,9 @@
 .partners-logo-scroller {
     width: 100%;
     overflow: hidden;
+        flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .partners-logo-track {
