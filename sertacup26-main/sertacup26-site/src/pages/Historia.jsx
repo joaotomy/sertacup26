@@ -32,7 +32,7 @@ return ( <main className="historia-page">
   <section className="historia-hero">
 
     <img
-      src="/images/storycover.jpg"
+      src="/images/storycover.png"
       alt=""
       className="historia-cover"
     />
