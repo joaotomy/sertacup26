@@ -5,7 +5,7 @@ import "../styles/gameadmin.css";
 export default function GameAdmin() {
   const { id } = useParams();
 
-  const apiUrl = "http://localhost:3000";
+  const apiUrl = "https://sertanense.pt/api";
 
   const [game, setGame] = useState(null);
   const [error, setError] = useState("");

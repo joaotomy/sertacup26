@@ -11,7 +11,7 @@ export default function ParticipantesSection() {
 
             <div className="participantes-overlay">
 
-                <h2>Participantes</h2>
+                <div className="section-header">Participantes</div>
 
                 <div className="participantes-grid">
 

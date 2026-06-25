@@ -12,15 +12,14 @@ export default function Layout() {
         <div className="nav-wrapper">
 
           <div className="nav-section">
-             <div className="dropdown">
+            <div className="dropdown">
               <Link to="/info" className="nav-item">INFORMAÇÕES</Link>
 
               <div className="dropdown-content">
-                <Link to="/info?tab=horarios">Horários</Link>
-                <Link to="/info?tab=mapa">Mapa</Link>
-                <Link to="/info?tab=formato">Formato</Link>
-                 <Link to="/info?tab=participantes">Participantes</Link>
-                <Link to="/info?tab=seguranca">Segurança</Link>
+                <Link to="/info#horarios">Horários</Link>
+                <Link to="/info#mapa">Mapa</Link>
+                <Link to="/info#formato">Formato</Link>
+                <Link to="/info#participantes">Participantes</Link>
               </div>
             </div>
 
@@ -36,9 +35,9 @@ export default function Layout() {
           </div>
 
           <div className="logo-container desktop-logo">
-           <Link to="/"> 
+            <Link to="/">
               <img src="/images/logo.png" alt="logo" className="logo" />
-           </Link>
+            </Link>
           </div>
 
           <div className="nav-section">
@@ -50,9 +49,9 @@ export default function Layout() {
 
       {/* mobile */}
       <div className="mobile-top">
-     <Link to="/">
+        <Link to="/">
           <img src="/images/logo.png" className="logo-mobile" />
-</Link> 
+        </Link>
       </div>
 
       <div className="mobile-bottom">
