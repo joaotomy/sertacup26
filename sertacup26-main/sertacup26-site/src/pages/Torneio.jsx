@@ -16,11 +16,11 @@ const teamCounts = {
 const leagueRounds = {
   champs: [
      { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
-    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["92", "93", "94", "95"], GapLevel: 1 },
     { Title: "3ª Ronda", Side: "left", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
     { Title: "Finais", Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["", "", "", "", "", "", "", ""], GapLevel: 3 },
     { Title: "3ª Ronda", Side: "right", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
-    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 2, Jogos: ["96", "97", "98", "99"], GapLevel: 1 },
     { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 4, Jogos: ["78", "79", "80", "81"], GapLevel: 0 },
   ],
   europa: [
