@@ -43,6 +43,36 @@ const leagueRounds = {
     { Title: "Finais",   Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["0","0","0","0"], GapLevel: 3 },
     { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 1, Jogos: ["0","0"], GapLevel: 2 },
     { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["0","0"], GapLevel: 0 },
+<<<<<<< HEAD
+=======
+=======
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
+    { Title: "3ª Ronda", Side: "left", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
+    { Title: "Finais", Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["", "", "", "", "", "", "", ""], GapLevel: 3 },
+    { Title: "3ª Ronda", Side: "right", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 4, Jogos: ["78", "79", "80", "81"], GapLevel: 0 },
+  ],
+  europa: [
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 2, Jogos: ["0", "0"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["0", "0"], GapLevel: 0 },
+  ],
+  conference: [
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 2, Jogos: ["0", "0"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+<<<<<<< HEAD
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["0", "0"], GapLevel: 0 },
+=======
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["51", "52"], GapLevel: 0 },
+>>>>>>> 2c469944d61a397d637d46392c8a557cb62a8a31
+>>>>>>> 277ea51e659bc153227eb2d44a03b801b4193e58
+>>>>>>> 196524de43518d834a51cadc2ffefa9b67b99a46
   ],
 };
 
