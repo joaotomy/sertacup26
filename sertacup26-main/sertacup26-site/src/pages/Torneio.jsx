@@ -4,105 +4,45 @@ import "../styles/torneio.css";
 
 const apiUrl = "https://sertanense.pt/api";
 let countGetPlacement = 0;
-// ─── Placeholder Data ────────────────────────────────────────────────────────
-
-// const jogos = [
-//   { Id: "1", equipa1: "Sertanense ICOS", equipa2: "Moçarriense", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-10T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "A", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: ["João Silva 12'", "Pedro Costa 34'"], MarcadoresEquipa2: ["Miguel Lopes 22'"] },
-//   { Id: "2", equipa1: "B.E.F.P.G.", equipa2: "U.D. Belmonte", Estado: "Intervalo", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-10T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "A", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: ["Rui Faria 8'"], MarcadoresEquipa2: [] },
-//   { Id: "3", equipa1: "Desportivo C.B.", equipa2: "E.F. Tomar", Estado: "2ªP", golos_equipa1: "0", golos_equipa2: "0", horaPrevista: new Date("2026-05-10T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "12:25", Fase: "FASE DE GRUPOS", grupo: "B", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "4", equipa1: "U.D. Atalaiense", equipa2: "Fátima - A", Estado: "Resultado Final", golos_equipa1: "3", golos_equipa2: "2", horaPrevista: new Date("2026-05-10T13:00:00"), hora_inicio: "13:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "B", Campo: "2", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "5", equipa1: "Vieirense", equipa2: "Moçarriense", Estado: "1ªP", golos_equipa1: "1", golos_equipa2: "1", horaPrevista: new Date("2026-05-10T14:00:00"), hora_inicio: "14:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "C", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "6", equipa1: "Os Lagartos", equipa2: "Ouriquense", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-10T15:00:00"), hora_inicio: "15:00", hora_inicio_2parte: "", Fase: "FASE DE GRUPOS", grupo: "C", Campo: "2", situacao_precaria: "", começado: false, MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "7", equipa1: "Peniche", equipa2: "Sertanense SPC", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-11T10:00:00"), hora_inicio: "10:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "1º/2º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "10:00" },
-//   { Id: "8", equipa1: "U.D. Chamusca", equipa2: "G.D. Ilha", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "2", horaPrevista: new Date("2026-05-11T11:00:00"), hora_inicio: "11:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "2", situacao_precaria: "3º/4º lugar", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "11:00" },
-//   { Id: "9", equipa1: "Os Bucelenses", equipa2: "Vieirense", Estado: "Intervalo", golos_equipa1: "0", golos_equipa2: "1", horaPrevista: new Date("2026-05-11T12:00:00"), hora_inicio: "12:00", hora_inicio_2parte: "", Fase: "FASE FINAL", grupo: "0", Campo: "1", situacao_precaria: "", começado: true, MarcadoresEquipa1: [], MarcadoresEquipa2: [], Hora: "12:00" },
-
-//   { Id: "49", equipa1: "Os Bucelenses", equipa2: "Vieirense", Estado: "Resultado Final", golos_equipa1: "2", golos_equipa2: "1", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "50", equipa1: "U.D. Chamusca", equipa2: "Moçarriense", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "51", equipa1: "G.D. Ilha", equipa2: "Fátima - A", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "52", equipa1: "Peniche", equipa2: "E.F. Tomar", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T13:00:00"), Hora: "13:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "53", equipa1: "Sertanense SPC", equipa2: "Peniche", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "54", equipa1: "Ouriquense", equipa2: "Ponte de Frielas", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "55", equipa1: "Os Lagartos", equipa2: "Vilarregense F.C.", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T12:00:00"), Hora: "12:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "56", equipa1: "Vieirense", equipa2: "U.F.C.I.", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T13:00:00"), Hora: "13:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "105", equipa1: "Moçarriense", equipa2: "U.F.C.I.", Estado: "Resultado Final", golos_equipa1: "1", golos_equipa2: "0", horaPrevista: new Date("2026-05-12T10:00:00"), Hora: "10:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "106", equipa1: "Fátima - A", equipa2: "E.F. Tomar", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T11:00:00"), Hora: "11:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "107", equipa1: "Vilarregense F.C.", equipa2: "U.F.C.I.", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T14:00:00"), Hora: "14:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-//   { Id: "108", equipa1: "Peniche", equipa2: "Ponte de Frielas", Estado: "Agendado", golos_equipa1: "", golos_equipa2: "", horaPrevista: new Date("2026-05-12T15:00:00"), Hora: "15:00", MarcadoresEquipa1: [], MarcadoresEquipa2: [] },
-// ];
-
-// const grupos = [
-//   {
-//     Name: "A",
-//     Teams: [
-//       { Name: "Sertanense SPC", J: 2, V: 2, E: 0, D: 0, GD: 3, GM: 4, P: 6 },
-//       { Name: "Ouriquense",  J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 2, P: 3 },
-//       { Name: "Vieirense",    J: 2, V: 1, E: 0, D: 1, GD: -1, GM: 2, P: 3 },
-//       { Name: "Vilarregense F.C.",    J: 2, V: 0, E: 0, D: 2, GD: -2, GM: 1, P: 0 },
-//     ],
-//   },
-//   {
-//     Name: "B",
-//     Teams: [
-//       { Name: "Moçarriense",      J: 2, V: 2, E: 0, D: 0, GD: 2, GM: 4, P: 6 },
-//       { Name: "Ponte de Frielas",   J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
-//       { Name: "Fátima - A",J: 2, V: 0, E: 1, D: 1, GD: -1, GM: 1, P: 1 },
-//       { Name: "G.D. Ilha",       J: 2, V: 1, E: 0, D: 1, GD: 0, GM: 3, P: 3 },
-//     ],
-//   },
-//   {
-//     Name: "C",
-//     Teams: [
-//       { Name: "U.D. Chamusca",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
-//       { Name: "Peniche",   J: 1, V: 0, E: 1, D: 0, GD: 0, GM: 1, P: 1 },
-//       { Name: "U.D. Belmonte", J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
-//       { Name: "Os Bucelenses",    J: 0, V: 0, E: 0, D: 0, GD: 0, GM: 0, P: 0 },
-//     ],
-//   },
-// ];
 
 // ─── FF Config ───────────────────────────────────────────────────────────────
 
 const teamCounts = {
-  //champs: 16, europa: 8, 
+  champs: 16, europa: 8, 
   conference: 4,
   feminina: 4
 };
 
 const leagueRounds = {
-  // champs: [
-  //   { Title: "1ª Ronda", Side: "left",   BoxCount: 1, GamesPerBox: 4, Jogos: ["57","60","61","64"], GapLevel: 0 },
-  //   { Title: "2ª Ronda", Side: "left",   BoxCount: 2, GamesPerBox: 2, Jogos: ["73","79","74","80"], GapLevel: 1 },
-  //   { Title: "3ª Ronda", Side: "left",   BoxCount: 4, GamesPerBox: 1, Jogos: ["89","90","93","94"], GapLevel: 2 },
-  //   { Title: "Finais",   Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["104","97","98","99","100","101","102","103"], GapLevel: 3 },
-  //   { Title: "3ª Ronda", Side: "right",  BoxCount: 4, GamesPerBox: 1, Jogos: ["91","92","95","96"], GapLevel: 2 },
-  //   { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 2, Jogos: ["75","77","76","78"], GapLevel: 1 },
-  //   { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 4, Jogos: ["58","62","59","63"], GapLevel: 0 },
-  // ],
-  // europa: [
-  //   { Title: "1ª Ronda", Side: "left",   BoxCount: 1, GamesPerBox: 2, Jogos: ["49","50"], GapLevel: 0 },
-  //   { Title: "2ª Ronda", Side: "left",   BoxCount: 2, GamesPerBox: 1, Jogos: ["69","70"], GapLevel: 2 },
-  //   { Title: "Finais",   Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["88","81","82","83"], GapLevel: 3 },
-  //   { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 1, Jogos: ["71","72"], GapLevel: 2 },
-  //   { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["51","52"], GapLevel: 0 },
-  // ],
-  conference: [
-    { Title: "Meias Finais", Side: "left", BoxCount: 1, GamesPerBox: 1, Jogos: ["17"], GapLevel: 1 },
-    { Title: "Finais", Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["23", "24"], GapLevel: 3 },
-    { Title: "Meias Finais", Side: "right", BoxCount: 1, GamesPerBox: 1, Jogos: ["18"], GapLevel: 1 },
+  champs: [
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
+    { Title: "3ª Ronda", Side: "left", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
+    { Title: "Finais", Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["", "", "", "", "", "", "", ""], GapLevel: 3 },
+    { Title: "3ª Ronda", Side: "right", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 4, Jogos: ["78", "79", "80", "81"], GapLevel: 0 },
   ],
-  feminina: [
-    { Title: "Meias Finais", Side: "left", BoxCount: 1, GamesPerBox: 1, Jogos: ["19"], GapLevel: 1 },
-    { Title: "Finais", Side: "center", BoxCount: 2, GamesPerBox: 1, Jogos: ["21", "22"], GapLevel: 3 },
-    { Title: "Meias Finais", Side: "right", BoxCount: 1, GamesPerBox: 1, Jogos: ["20"], GapLevel: 1 },
+  europa: [
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 2, Jogos: ["49", "50"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["51", "52"], GapLevel: 0 },
+  ],
+  conference: [
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 2, Jogos: ["49", "50"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["51", "52"], GapLevel: 0 },
   ],
 };
 
 const allLeagues = [
-  // { Key: "champs",     Name: "Liga dos Campeões PALSER" },
-  // { Key: "europa",     Name: "Liga Europa PINHOSER" },
-  { Key: "conference", Name: "Sertã Cup Feminina - 1º ao 4º lugar" },
-  { Key: "feminina", Name: "Sertã Cup Feminina - 5º ao 8º lugar" },
+  { Key: "champs", Name: "Liga dos Campeões PALSER" },
+  { Key: "europa", Name: "Liga Revelação STANDFRIGI" },
+  { Key: "conference", Name: "Liga Promessa PINHOSER" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────

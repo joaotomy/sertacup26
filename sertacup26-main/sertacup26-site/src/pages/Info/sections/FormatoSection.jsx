@@ -117,7 +117,7 @@ export default function FormatoSection() {
                                 * Consulta o
                                 {" "}
                                 <a
-                                    href="/regulamento.pdf"
+                                    href="/SERTÃCUP 2026 REGULAMENTO.pdf"
                                     target="_blank"
                                     rel="noreferrer"
                                 >

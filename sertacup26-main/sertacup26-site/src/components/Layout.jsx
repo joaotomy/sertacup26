@@ -34,7 +34,7 @@ export default function Layout() {
               <div className="dropdown-content">
                 <Link to="/torneio?tab=calendario">Calendário</Link>
                 <Link to="/torneio?tab=grupos">Grupos</Link>
-                {/* <Link to="/torneio?tab=fases-finais">Fases Finais</Link> */}
+                <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function Layout() {
               <div className="mobile-submenu" >
                 <Link to="/torneio?tab=calendario" onClick={closeMenu}>Calendário</Link>
                 <Link to="/torneio?tab=grupos" onClick={closeMenu}>Grupos</Link>
-                {/* <Link to="/torneio?tab=fases-finais">Fases Finais</Link> */}
+                <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
               </div>
             )}
           </div>

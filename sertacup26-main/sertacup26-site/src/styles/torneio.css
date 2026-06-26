@@ -776,6 +776,7 @@ td.group-team-cell {
     padding: 0.5rem 0;
     align-self: center;
     min-width: 0;
+    max-width: 30vw;
 }
 
 .ff-round-colum.active .ff-round-title{
