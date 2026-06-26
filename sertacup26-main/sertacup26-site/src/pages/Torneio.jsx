@@ -15,6 +15,36 @@ const teamCounts = {
 
 const leagueRounds = {
   champs: [
+<<<<<<< HEAD
+    { Title: "1ª Ronda", Side: "left",   BoxCount: 1, GamesPerBox: 4, Jogos: ["57","60","61","64"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left",   BoxCount: 2, GamesPerBox: 2, Jogos: ["73","79","74","80"], GapLevel: 1 },
+    { Title: "3ª Ronda", Side: "left",   BoxCount: 4, GamesPerBox: 1, Jogos: ["89","90","93","94"], GapLevel: 2 },
+    { Title: "Finais",   Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["104","97","98","99","100","101","102","103"], GapLevel: 3 },
+    { Title: "3ª Ronda", Side: "right",  BoxCount: 4, GamesPerBox: 1, Jogos: ["91","92","95","96"], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 2, Jogos: ["75","77","76","78"], GapLevel: 1 },
+    { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 4, Jogos: ["58","62","59","63"], GapLevel: 0 },
+  ],
+  // europa: [
+  //   { Title: "1ª Ronda", Side: "left",   BoxCount: 1, GamesPerBox: 2, Jogos: ["49","50"], GapLevel: 0 },
+  //   { Title: "2ª Ronda", Side: "left",   BoxCount: 2, GamesPerBox: 1, Jogos: ["69","70"], GapLevel: 2 },
+  //   { Title: "Finais",   Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["88","81","82","83"], GapLevel: 3 },
+  //   { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 1, Jogos: ["71","72"], GapLevel: 2 },
+  //   { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["51","52"], GapLevel: 0 },
+  // ],
+  conference: [
+    { Title: "1ª Ronda", Side: "left",   BoxCount: 1, GamesPerBox: 2, Jogos: ["0","0"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left",   BoxCount: 2, GamesPerBox: 1, Jogos: ["0","0"], GapLevel: 2 },
+    { Title: "Finais",   Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["0","0","0","0"], GapLevel: 3 },
+    { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 1, Jogos: ["0","0"], GapLevel: 2 },
+    { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["0","0"], GapLevel: 0 },
+  ],
+  feminina: [
+    { Title: "1ª Ronda", Side: "left",   BoxCount: 1, GamesPerBox: 2, Jogos: ["0","0"], GapLevel: 0 },
+    { Title: "2ª Ronda", Side: "left",   BoxCount: 2, GamesPerBox: 1, Jogos: ["0","0"], GapLevel: 2 },
+    { Title: "Finais",   Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["0","0","0","0"], GapLevel: 3 },
+    { Title: "2ª Ronda", Side: "right",  BoxCount: 2, GamesPerBox: 1, Jogos: ["0","0"], GapLevel: 2 },
+    { Title: "1ª Ronda", Side: "right",  BoxCount: 1, GamesPerBox: 2, Jogos: ["0","0"], GapLevel: 0 },
+=======
     { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
     { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["", "", "", ""], GapLevel: 1 },
     { Title: "3ª Ronda", Side: "left", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
@@ -35,14 +65,26 @@ const leagueRounds = {
     { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
     { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
     { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+<<<<<<< HEAD
     { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["0", "0"], GapLevel: 0 },
+=======
+    { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["51", "52"], GapLevel: 0 },
+>>>>>>> 2c469944d61a397d637d46392c8a557cb62a8a31
+>>>>>>> 277ea51e659bc153227eb2d44a03b801b4193e58
   ],
 };
 
 const allLeagues = [
+<<<<<<< HEAD
+  { Key: "champs",     Name: "Liga dos Campeões PALSER" },
+  // { Key: "europa",     Name: "Liga Europa PINHOSER" },
+  { Key: "conference", Name: "Liga Revelação STANDFRIGI" },
+  { Key: "feminina", Name: "Liga Promessa PINHOSER" },
+=======
   { Key: "champs", Name: "Liga dos Campeões PALSER" },
   { Key: "europa", Name: "Liga Revelação STANDFRIGI" },
   { Key: "conference", Name: "Liga Promessa PINHOSER" },
+>>>>>>> 2c469944d61a397d637d46392c8a557cb62a8a31
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
