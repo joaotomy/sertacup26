@@ -30,7 +30,6 @@ const teams = [
     "/images/teams/U.F. Comércio Indústria A.png",
     "/images/teams/U.F. Comércio Indústria B.png",
     "/images/teams/Vilarregense F.C..png",
-    "/images/teams/Warm Team.png"
 ];
 
 export default function ParticipantesSection() {
