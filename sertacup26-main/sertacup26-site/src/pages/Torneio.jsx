@@ -9,7 +9,7 @@ let countGetPlacement = 0;
 
 const teamCounts = {
   champs: 16, europa: 8, 
-  conference: 4,
+  conference: 8,
   feminina: 4
 };
 
