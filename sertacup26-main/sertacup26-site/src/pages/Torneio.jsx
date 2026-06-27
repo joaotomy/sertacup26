@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import "../styles/torneio.css";
 
-const apiUrl = "https://sertanense.pt/api";
+const apiUrl = "https://sertacup.pt/api";
 let countGetPlacement = 0;
 
 // ─── FF Config ───────────────────────────────────────────────────────────────

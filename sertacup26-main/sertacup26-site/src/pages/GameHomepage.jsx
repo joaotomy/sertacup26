@@ -7,7 +7,7 @@ export default function GameHomepage() {
   const [chave, setChave] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const apiUrl = 'https://sertanense.pt/api'
+  const apiUrl = 'https://sertacup.pt/api'
 
   async function handleSubmit(e) {
     e.preventDefault();
