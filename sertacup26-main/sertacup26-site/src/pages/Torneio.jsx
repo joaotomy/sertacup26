@@ -8,14 +8,14 @@ let countGetPlacement = 0;
 // ─── FF Config ───────────────────────────────────────────────────────────────
 
 const teamCounts = {
-  champs: 16, europa: 8, 
+  champs: 16, 
+  europa: 8, 
   conference: 8,
-  feminina: 4
 };
 
 const leagueRounds = {
   champs: [
-     { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
+    { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
     { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["92", "93", "94", "95"], GapLevel: 1 },
     { Title: "3ª Ronda", Side: "left", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 2 },
     { Title: "Finais", Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["", "", "", "", "", "", "", ""], GapLevel: 3 },
@@ -454,10 +454,9 @@ function FasesFinaisTab({ jogos }) {
   return (
     <div id="fases-finais" className="tab-content active">
       <div className="ff-section-title">
-        {/* <button onClick={() => scrollTo("champs")}>LIGA DOS CAMPEÕES</button>
-        <button onClick={() => scrollTo("europa")}>LIGA EUROPA</button>
-        <button onClick={() => scrollTo("conference")}>LIGA CONFERÊNCIA</button> 
-        <button onClick={() => scrollTo("feminina")}>LIGA FEMININA</button>*/}
+        <button onClick={() => scrollTo("champs")}>LIGA DOS CAMPEÕES</button>
+        <button onClick={() => scrollTo("europa")}>LIGA REVELAÇÃO</button>
+        <button onClick={() => scrollTo("conference")}>LIGA PROMESSA</button> 
       </div>
 
       {allLeagues.map(league => (

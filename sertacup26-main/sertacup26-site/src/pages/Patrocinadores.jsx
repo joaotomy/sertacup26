@@ -5,35 +5,35 @@ export default function Patrocinadores() {
   const logos = [
     {
       image: "freguesia_serta.png",
-      url: "https://example.com"
+      url: "https://www.jfserta.pt/"
     },
     {
       image: "palser.png",
-      url: "https://example.com"
+      url: "https://www.palser.pt/"
     },
     {
       image: "pinhoser.png",
-      url: "https://example.com"
+      url: "https://www.pinhoser.pt/m"
     },
     {
       image: "serta_municipio.png",
-      url: "https://example.com"
+      url: "https://cm-serta.pt/"
     },
         {
       image: "stand_frigi.png",
-      url: "https://example.com"
+      url: "https://standfrigi.com/"
     },
         {
       image: "opticalia.jpg",
-      url: "https://example.com"
+      url: "https://www.opticalia.com/pt"
     },
         {
       image: "focar_momentos.png",
-      url: "https://example.com"
+      url: "https://fotoheldercosta.com/Focar-Momentos/"
     },
             {
       image: "ricardo_ribeiro_pinturas.png",
-      url: "https://example.com"
+      url: "https://www.ricardoribeiropinturas.pt/"
     }
   ];
 
