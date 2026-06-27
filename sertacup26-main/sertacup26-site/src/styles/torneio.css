@@ -725,7 +725,8 @@ td.group-team-cell {
     }
 
 .ff-league-section {
-    padding: 1rem;
+    padding: 3rem 1rem;
+    margin-top: 4rem;
 }
 
 .ff-league-title {
@@ -743,17 +744,18 @@ td.group-team-cell {
 }
 
 .ff-league-scroll {
-    width: 100%;
+    width: max-content;
     max-width: 1600px;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    gap: 0;
+    gap: 3rem;
     padding: 0 1rem;
     box-sizing: border-box;
+    margin: auto;
 }
 
 .ff-round-title {
@@ -852,9 +854,22 @@ td.group-team-cell {
 }
 
 .ff-team-name {
-    flex: 1;
+        flex: 1;
+    min-width: 0;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
     font-family: var(--font-display);
-    font-size: var(--font-size-h9);
+
+}
+
+.ff-team-name span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: clamp(.55rem, .85vw, .95rem);
 }
 
 .ff-team-score {
