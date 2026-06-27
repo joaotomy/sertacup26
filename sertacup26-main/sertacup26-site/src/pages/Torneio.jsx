@@ -25,16 +25,16 @@ const leagueRounds = {
   ],
   europa: [
     { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 2, Jogos: ["82", "83"], GapLevel: 0 },
-    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["109", "110"], GapLevel: 2 },
     { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
-    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["111", "112"], GapLevel: 2 },
     { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["84", "85"], GapLevel: 0 },
   ],
   conference: [
     { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 2, Jogos: ["91", "87"], GapLevel: 0 },
-    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 1, Jogos: ["105", "106"], GapLevel: 2 },
     { Title: "Finais", Side: "center", BoxCount: 4, GamesPerBox: 1, Jogos: ["", "", "", ""], GapLevel: 3 },
-    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["", ""], GapLevel: 2 },
+    { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 1, Jogos: ["107", "108"], GapLevel: 2 },
     { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 2, Jogos: ["88", "89"], GapLevel: 0 },
   ],
 };
