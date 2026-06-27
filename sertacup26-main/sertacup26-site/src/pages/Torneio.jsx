@@ -18,7 +18,7 @@ const leagueRounds = {
     { Title: "1ª Ronda", Side: "left", BoxCount: 1, GamesPerBox: 4, Jogos: ["74", "75", "76", "77"], GapLevel: 0 },
     { Title: "2ª Ronda", Side: "left", BoxCount: 2, GamesPerBox: 2, Jogos: ["92", "93", "94", "95"], GapLevel: 1 },
     { Title: "3ª Ronda", Side: "left", BoxCount: 4, GamesPerBox: 1, Jogos: ["113", "114", "115", "116"], GapLevel: 2 },
-    { Title: "Finais", Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["", "", "", "", "", "", "", ""], GapLevel: 3 },
+    { Title: "Finais", Side: "center", BoxCount: 8, GamesPerBox: 1, Jogos: ["129", "130", "131", "132", "133", "134", "135", "136"], GapLevel: 3 },
     { Title: "3ª Ronda", Side: "right", BoxCount: 4, GamesPerBox: 1, Jogos: ["117", "118", "119", "120"], GapLevel: 2 },
     { Title: "2ª Ronda", Side: "right", BoxCount: 2, GamesPerBox: 2, Jogos: ["96", "97", "98", "99"], GapLevel: 1 },
     { Title: "1ª Ronda", Side: "right", BoxCount: 1, GamesPerBox: 4, Jogos: ["78", "79", "80", "81"], GapLevel: 0 },
