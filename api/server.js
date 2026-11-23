@@ -1,5 +1,5 @@
 const express = require('express');
-const sql = require('mssql');
+const sql = require('mssql/msnodesqlv8');
 const cors = require('cors');
 
 const app = express();
@@ -10,17 +10,133 @@ app.use(express.json());
 const crypto = require('crypto');
 
 const config = {
-  user: 'sa',
-  password: 'Bexigaemuitoburro8_',
-  server: '49.12.237.72',
-  database: 'sertacup26_fem',
+  server: 'localhost',
+  database: 'sertacup26',
+  driver: 'ODBC Driver 17 for SQL Server',
   options: {
+    instanceName: 'MSSQLSERVER01',
+    trustedConnection: true,
     encrypt: false,
     trustServerCertificate: true
   }
 };
 
 const poolPromise = sql.connect(config);
+
+// As sessões são temporárias e desaparecem quando a API é reiniciada.
+const teamSessions = new Map();
+app.use('/admin', require('./admin')({
+  sql,
+  poolPromise,
+  revokeAccountSessions: accountId => {
+    for (const [token, session] of teamSessions) {
+      if (Number(session.accountId) === accountId) teamSessions.delete(token);
+    }
+  }
+}));
+app.post('/team-login', async (req, res) => {
+  const { username, password } = req.body || {};
+  if (typeof username !== 'string' || typeof password !== 'string' || !username.trim() || !password || username.length > 100 || password.length > 255) return res.status(400).json({ error: 'Preenche o utilizador e a palavra-passe.' });
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().input('username', sql.NVarChar(100), username.trim()).query('SELECT id, idequipa, password FROM dbo.equipa_login WHERE username = @username');
+    const account = result.recordset[0];
+    const supplied = Buffer.from(password, 'utf8');
+    const stored = Buffer.from(account?.password || '', 'utf8');
+    if (!account || supplied.length !== stored.length || !crypto.timingSafeEqual(supplied, stored)) return res.status(401).json({ error: 'Utilizador ou palavra-passe incorretos.' });
+    const token = crypto.randomBytes(32).toString('hex');
+    teamSessions.set(token, { accountId: account.id, teamId: account.idequipa, expires: Date.now() + 8 * 60 * 60 * 1000 });
+    res.json({ token });
+  } catch (err) {
+    console.error('Erro no login de equipa:', err);
+    res.status(500).json({ error: 'Não foi possível iniciar sessão.' });
+  }
+});
+
+app.get('/team-session', (req, res) => {
+  const token = req.get('Authorization')?.match(/^Bearer ([a-f0-9]{64})$/)?.[1];
+  const session = token && teamSessions.get(token);
+  if (!session || session.expires <= Date.now()) {
+    if (token) teamSessions.delete(token);
+    return res.status(401).json({ error: 'Sessão inválida ou expirada.' });
+  }
+  res.json({ teamId: session.teamId });
+});
+
+function requireTeam(req, res, next) {
+  const token = req.get('Authorization')?.match(/^Bearer ([a-f0-9]{64})$/)?.[1];
+  const session = token && teamSessions.get(token);
+  if (!session || session.expires <= Date.now()) return res.status(401).json({ error: 'Sessão inválida ou expirada.' });
+  if (session.teamId == null) return res.status(403).json({ error: 'Esta conta ainda não está associada a uma equipa.' });
+  req.teamId = session.teamId;
+  req.accountId = session.accountId;
+  next();
+}
+
+app.get('/team-accommodation', requireTeam, async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().input('teamId', sql.Int, req.teamId).query('SELECT tipo, localizacao, maps_url, regras FROM dbo.admin_alojamento WHERE idequipa=@teamId');
+    res.json(result.recordset[0] || null);
+  } catch (err) { console.error(err); res.status(500).json({ error: 'Não foi possível carregar o alojamento.' }); }
+});
+
+async function teamRegistrationOpen(pool, accountId, teamId) {
+  const result = await pool.request().input('accountId', sql.Int, accountId).input('teamId', sql.Int, teamId).query(`
+    SELECT COALESCE(l.InscricaoAberta, (SELECT Valor FROM dbo.parametro WHERE Codigo = N'inscricoes_abertas'), 0) AS aberta
+    FROM dbo.equipa_login l WHERE l.id = @accountId AND l.idequipa = @teamId
+  `);
+  return Boolean(result.recordset[0]?.aberta);
+}
+
+function validBirthDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value) || value < '2014-01-01' || value > '2018-01-01') return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
+app.get('/team-players', requireTeam, async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().input('teamId', sql.Int, req.teamId).query('SELECT id, nome, numero, CONVERT(varchar(10), DataNascimento, 23) AS datanascimento FROM dbo.jogador WHERE idequipa = @teamId ORDER BY nome');
+    const inscricoesAbertas = await teamRegistrationOpen(pool, req.accountId, req.teamId);
+    res.json({ jogadores: result.recordset, inscricoesAbertas });
+  } catch (err) { console.error(err); res.status(500).json({ error: 'Não foi possível carregar os jogadores.' }); }
+});
+
+app.post('/team-players', requireTeam, async (req, res) => {
+  const { nome, numero, datanascimento } = req.body || {};
+  if (typeof nome !== 'string' || !nome.trim() || nome.trim().length > 100 || !Number.isInteger(numero) || numero < 0 || numero > 99 || !validBirthDate(datanascimento)) return res.status(400).json({ error: 'Indica um nome, número de camisola entre 0 e 99 e data de nascimento entre 01/01/2014 e 01/01/2018.' });
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().input('teamId', sql.Int, req.teamId).input('accountId', sql.Int, req.accountId).input('nome', sql.NVarChar(100), nome.trim()).input('numero', sql.Int, numero).input('datanascimento', sql.VarChar(8), datanascimento.replace(/-/g, '')).query(`
+      INSERT INTO dbo.jogador (nome, numero, idequipa, DataNascimento) OUTPUT INSERTED.id, INSERTED.nome, INSERTED.numero, CONVERT(varchar(10), INSERTED.DataNascimento, 23) AS datanascimento
+      SELECT @nome, @numero, @teamId, CONVERT(datetime, @datanascimento, 112) WHERE EXISTS (
+        SELECT 1 FROM dbo.equipa_login l WHERE l.id = @accountId AND l.idequipa = @teamId
+        AND COALESCE(l.InscricaoAberta, (SELECT Valor FROM dbo.parametro WHERE Codigo = N'inscricoes_abertas'), 0) = 1
+      )`);
+    if (!result.recordset.length) return res.status(403).json({ error: 'As inscrições estão encerradas para esta equipa.' });
+    res.status(201).json(result.recordset[0]);
+  } catch (err) { console.error(err); res.status(500).json({ error: 'Não foi possível adicionar o jogador.' }); }
+});
+
+app.put('/team-players/:id', requireTeam, async (req, res) => {
+  const id = Number(req.params.id);
+  const { nome, numero, datanascimento } = req.body || {};
+  if (!Number.isInteger(id) || id < 1 || id > 2147483647 || typeof nome !== 'string' || !nome.trim() || nome.trim().length > 100 || !Number.isInteger(numero) || numero < 0 || numero > 99 || !validBirthDate(datanascimento)) return res.status(400).json({ error: 'Indica um jogador, nome, número de camisola entre 0 e 99 e data de nascimento entre 01/01/2014 e 01/01/2018.' });
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().input('id', sql.Int, id).input('teamId', sql.Int, req.teamId).input('accountId', sql.Int, req.accountId).input('nome', sql.NVarChar(100), nome.trim()).input('numero', sql.Int, numero).input('datanascimento', sql.VarChar(8), datanascimento.replace(/-/g, '')).query(`
+      UPDATE dbo.jogador SET nome = @nome, numero = @numero, DataNascimento = CONVERT(datetime, @datanascimento, 112) OUTPUT INSERTED.id, INSERTED.nome, INSERTED.numero, CONVERT(varchar(10), INSERTED.DataNascimento, 23) AS datanascimento
+      WHERE id = @id AND idequipa = @teamId AND EXISTS (
+        SELECT 1 FROM dbo.equipa_login l WHERE l.id = @accountId AND l.idequipa = @teamId
+        AND COALESCE(l.InscricaoAberta, (SELECT Valor FROM dbo.parametro WHERE Codigo = N'inscricoes_abertas'), 0) = 1
+      )`);
+    if (result.recordset.length) return res.json(result.recordset[0]);
+    if (!await teamRegistrationOpen(pool, req.accountId, req.teamId)) return res.status(403).json({ error: 'As inscrições estão encerradas para esta equipa.' });
+    res.status(404).json({ error: 'Jogador não encontrado nesta equipa.' });
+  } catch (err) { console.error(err); res.status(500).json({ error: 'Não foi possível atualizar o jogador.' }); }
+});
 
 app.get('/teams', async (req, res) => {
   try {
@@ -481,8 +597,9 @@ app.put('/group-stats/:idequipa', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('API running on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`API running on port ${port}`);
 });
 
 poolPromise.catch(err => {

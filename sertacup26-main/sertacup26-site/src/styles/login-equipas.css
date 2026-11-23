@@ -1,0 +1,17 @@
+.team-login-page { min-height: 75vh; display: grid; place-items: center; padding: 4rem 1.25rem; background: linear-gradient(125deg, rgba(18,18,18,.91), rgba(18,18,18,.72)), url('/images/hero/herobg1.jpg') center/cover; }
+.team-login-card { width: min(100%, 480px); padding: clamp(1.75rem, 5vw, 3.25rem); background: #fbfbfb; color: #121212; }
+.team-login-back { display: inline-block; margin-bottom: 2.5rem; color: #333; text-decoration: none; font-size: .85rem; font-weight: 700; }
+.team-login-back:hover { text-decoration: underline; }
+.team-login-eyebrow { display: block; color: #4367f6; font-size: .72rem; font-weight: 700; letter-spacing: .14em; }
+.team-login-card h1 { margin-top: .65rem; font: normal clamp(3rem, 8vw, 4.5rem)/1 var(--font-display); }
+.team-login-intro { margin-top: .8rem; color: #555; line-height: 1.6; }
+.team-login-form { display: flex; flex-direction: column; margin-top: 2rem; }
+.team-login-form label { margin-bottom: .5rem; font-size: .85rem; font-weight: 700; }
+.team-login-form input { width: 100%; min-height: 50px; margin-bottom: 1.25rem; padding: .8rem 1rem; border: 1px solid #bcbcbc; border-radius: 0; background: white; color: #121212; font: inherit; }
+.team-login-form input:focus-visible { outline: 2px solid #4367f6; outline-offset: 2px; }
+.team-login-form button { display: flex; justify-content: space-between; align-items: center; min-height: 54px; margin-top: .5rem; padding: 1rem 1.25rem; border: 0; background: #121212; color: white; font: 700 .9rem var(--font-regular); cursor: pointer; }
+.team-login-form button:hover { background: #4367f6; }
+.team-login-form button:disabled { opacity: .6; cursor: wait; }
+.team-login-error { margin-bottom: .75rem; color: #a11414; font-size: .9rem; line-height: 1.5; }
+.team-dashboard-message { min-height: 60vh; padding: 4rem 1.5rem; text-align: center; }
+@media (max-width: 700px) { .team-login-page { min-height: 70vh; padding: 2rem 1rem 6rem; } .team-login-card { padding: 1.75rem 1.5rem; } }

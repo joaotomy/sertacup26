@@ -408,6 +408,14 @@ body {
     text-align: center;
 }
 
+.nav-item-disabled {
+    color: var(--overlay-white);
+    cursor: default;
+    opacity: 0.6;
+    pointer-events: none;
+    text-decoration: none;
+}
+
     .nav-item::after {
         content: '';
         position: absolute;

@@ -2,7 +2,34 @@ import { useSearchParams } from "react-router-dom";
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import "../styles/torneio.css";
 
-const apiUrl = "https://sertacup.pt/api";
+const demoTeams = ["Sertanense F.C. A", "A.D. Mação A", "G.D. Peniche", "U. Pombal", "S. Benfica C.B.", "F.C. Madalena A", "Acad. Alcoitão A", "Paio Pires FC", "Sertanense F.C. B", "A.D. Mação B", "G.D. Ilha", "Fazendense", "Ponte Frielas", "Catujalense", "Valongo", "Team do Pinhal"];
+const demoGroups = ["A", "B", "C", "D"].map((Name, groupIndex) => ({ Name, Teams: demoTeams.slice(groupIndex * 4, groupIndex * 4 + 4).map((Name, i) => ({ Name, J: 3, V: [3, 2, 1, 0][i], E: 0, D: [0, 1, 2, 3][i], GD: [6, 2, -2, -6][i], GM: [8, 5, 3, 1][i], P: [9, 6, 3, 0][i] })) }));
+const demoGames = Array.from({ length: 136 }, (_, i) => {
+  const agora = new Date();
+  const aoVivo = i < 3;
+  const inicio = new Date(agora.getTime() - (12 + i * 7) * 60000);
+  const horaPrevista = aoVivo
+    ? inicio
+    : new Date(2026, 5, i < 72 ? 6 : 7, 9 + Math.floor((i % 24) / 4), (i % 4) * 15);
+
+  return {
+    Id: String(i + 1),
+    equipa1: demoTeams[i % 16],
+    equipa2: demoTeams[(i + 5) % 16],
+    horaPrevista,
+    Hora: formatTime(horaPrevista),
+    Campo: (i % 4) + 1,
+    situacao_precaria: i < 72 ? 'Grupo ' + ['A', 'B', 'C', 'D'][i % 4] : 'Fase final',
+    grupo: i < 72 ? 'A' : '0',
+    terminado: !aoVivo,
+    ["come\u00e7ado"]: true,
+    hora_inicio: aoVivo ? inicio : undefined,
+    golos_equipa1: (i % 4) + 1,
+    golos_equipa2: i % 3,
+  };
+});
+
+const apiUrl = "http://localhost:3000";
 let countGetPlacement = 0;
 
 // ─── FF Config ───────────────────────────────────────────────────────────────
@@ -88,7 +115,7 @@ function formatTime(date) {
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 const CalGame = forwardRef(({ j, now }, ref) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded] = useState(false);
 
   const estadoDisplay = getEstado(j, now);
 
@@ -331,10 +358,11 @@ function CalendarioTab({ jogos }) {
     </div>
   );
 }
-function GruposTab() {
+function GruposTab({ demo }) {
   const [grupos, setGrupos] = useState([]);
 
   useEffect(() => {
+    if (demo) { setGrupos(demoGroups); return; }
     async function fetchGroups() {
       try {
         const response = await fetch(`${apiUrl}/groups`);
@@ -536,44 +564,71 @@ function getEstado(j, now) {
   return "Agendado";
 }
 
+function isGameLive(jogo) {
+  if (!jogo.começado || jogo.terminado) return false;
+
+  const intervalo =
+    jogo.primeira_parte_terminada && !jogo.segunda_parte_comecada;
+
+  return !intervalo;
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Torneio() {
   const [params] = useSearchParams();
   const tab = params.get("tab") ?? "calendario";
+  const demo = params.get("demo") === "1";
 
   const [jogos, setJogos] = useState([]);
 
   useEffect(() => {
+    if (demo) { setJogos(demoGames); return; }
+    let cancelled = false;
+    let refreshTimer;
+
     async function fetchGames() {
       try {
         const response = await fetch(`${apiUrl}/games`);
-        const data = await response.json();
+        if (!response.ok) throw new Error("Falha ao carregar jogos");
 
-        setJogos(
-          data.map(j => ({
-            ...j,
-            Id: String(j.id),
-            horaPrevista: new Date(j.hora_prevista),
-            Hora: new Date(j.hora_prevista).toTimeString().slice(0, 5),
-            Campo: j.campo
-          }))
-        );
+        const data = await response.json();
+        const nextGames = data.map(j => ({
+          ...j,
+          Id: String(j.id),
+          horaPrevista: new Date(j.hora_prevista),
+          Hora: new Date(j.hora_prevista).toTimeString().slice(0, 5),
+          Campo: j.campo
+        }));
+
+        if (cancelled) return;
+
+        setJogos(nextGames);
+
+        if (nextGames.some(isGameLive)) {
+          refreshTimer = setTimeout(fetchGames, 20000);
+        }
       } catch (err) {
-        console.error(err);
+        if (!cancelled) console.error(err);
       }
     }
 
     fetchGames();
-  }, []);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(refreshTimer);
+    };
+  }, [demo]);
 
   return (
     <div className="grid-container torneio">
+      {demo && <nav className="col-span-12" style={{ display: "flex", gap: "1rem", padding: "1rem", flexWrap: "wrap" }}><strong>Demonstracao</strong><a href="?demo=1&tab=calendario">Calendario</a><a href="?demo=1&tab=grupos">Grupos</a><a href="?demo=1&tab=fases-finais">Fases finais</a></nav>}
       {tab === "calendario" && <div className="cal-sticky-buffer"></div>}
 
       <div className="col-span-12 md:col-span-8 sm:col-span-4 content-section">
         {tab === "calendario" && <CalendarioTab jogos={jogos} />}
-        {tab === "grupos" && <GruposTab />}
+        {tab === "grupos" && <GruposTab demo={demo} />}
         {tab === "fases-finais" && <FasesFinaisTab jogos={jogos} />}
       </div>
     </div>

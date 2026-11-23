@@ -10,7 +10,12 @@ import Historia from "./pages/Historia";
 import Patrocinadores from "./pages/Patrocinadores";
 import GameHomepage from "./pages/GameHomepage";
 import About from "./pages/About";
-import GameAdmin from "./pages/GameAdmin";
+import AdminJogo from "./pages/AdminJogo";
+import AdminDashboard from "./pages/AdminDashboard";
+import Inscricao from "./pages/Inscricao";
+import LoginEquipas from "./pages/LoginEquipas";
+import DashboardEquipa from "./pages/DashboardEquipa";
+import { TeamGuard, JogadoresEquipa, DescobrirSerta, HorarioEquipa } from "./pages/EquipaPages";
 
 export default function App() {
   return (
@@ -22,8 +27,15 @@ export default function App() {
         <Route path="historia" element={<Historia />} />
         <Route path="patrocinadores" element={<Patrocinadores />} />
         <Route path="jogo" element={<GameHomepage />} />
+        <Route path="inscricao" element={<Inscricao />} />
+        <Route path="login-equipas" element={<LoginEquipas />} />
+        <Route path="dashboard-equipa" element={<DashboardEquipa />} />
+        <Route path="equipa/jogadores" element={<TeamGuard><JogadoresEquipa /></TeamGuard>} />
+        <Route path="equipa/descobrir-serta" element={<TeamGuard><DescobrirSerta /></TeamGuard>} />
+        <Route path="equipa/horario" element={<TeamGuard><HorarioEquipa /></TeamGuard>} />
         <Route path="about" element={<About />} />
-        <Route path="/admin/game/:id" element={<GameAdmin />} />
+        <Route path="admin" element={<AdminDashboard />} />
+        <Route path="admin/game/:id" element={<AdminJogo />} />
       </Route>
     </Routes>
   );

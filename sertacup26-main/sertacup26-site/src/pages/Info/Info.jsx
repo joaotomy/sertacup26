@@ -1,7 +1,5 @@
-import HorariosSection from "./sections/HorariosSection";
 import MapaSection from "./sections/MapaSection";
 import FormatoSection from "./sections/FormatoSection";
-import ParticipantesSection from "./sections/ParticipantesSection";
 
 import "../../styles/info.css";
 
@@ -27,20 +25,12 @@ export default function InfoPage() {
     return (
         <div className="info-page">
 
-            <section id="horarios">
-                <HorariosSection />
-            </section>
-
-            <section id="mapa">
-                <MapaSection />
-            </section>
-
             <section id="formato">
                 <FormatoSection />
             </section>
 
-            <section id="participantes">
-                <ParticipantesSection />
+            <section id="mapa">
+                <MapaSection />
             </section>
         </div>
     );

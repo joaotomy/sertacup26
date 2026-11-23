@@ -2,14 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import "../styles/site.css";
 
-const closeMenu = () => {
-  setMenuOpen(false);
-  setSubOpen(false);
-};
-
 export default function Layout() {
+  const torneioEnabled = false;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [subOpen, setSubOpen] = useState(false);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <div className="layout">
@@ -21,22 +20,24 @@ export default function Layout() {
               <Link to="/info" className="nav-item">INFORMAÇÕES</Link>
 
               <div className="dropdown-content">
-                <Link to="/info#horarios">Horários</Link>
-                <Link to="/info#mapa">Mapa</Link>
                 <Link to="/info#formato">Formato</Link>
-                <Link to="/info#participantes">Participantes</Link>
+                <Link to="/info#mapa">Mapa</Link>
               </div>
             </div>
 
-            <div className="dropdown">
-              <Link to="/torneio" className="nav-item">TORNEIO</Link>
+            {torneioEnabled ? (
+              <div className="dropdown">
+                <Link to="/torneio" className="nav-item">TORNEIO</Link>
 
-              <div className="dropdown-content">
-                <Link to="/torneio?tab=calendario">Calendário</Link>
-                <Link to="/torneio?tab=grupos">Grupos</Link>
-                <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
+                <div className="dropdown-content">
+                  <Link to="/torneio?tab=calendario">Calendário</Link>
+                  <Link to="/torneio?tab=grupos">Grupos</Link>
+                  <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
+                </div>
               </div>
-            </div>
+            ) : (
+              <span className="nav-item nav-item-disabled" aria-disabled="true">TORNEIO</span>
+            )}
           </div>
 
           <div className="logo-container desktop-logo">
@@ -69,17 +70,18 @@ export default function Layout() {
         <div className="mobile-menu">
           <Link to="/info" onClick={closeMenu}>INFORMAÇÕES</Link>
 
-          <div className="dropdown-mobile">
-            <span onClick={() => setSubOpen(!subOpen)}>TORNEIO</span>
-
-            {subOpen && (
-              <div className="mobile-submenu" >
+          {torneioEnabled ? (
+            <div className="dropdown-mobile">
+              <span>TORNEIO</span>
+              <div className="mobile-submenu">
                 <Link to="/torneio?tab=calendario" onClick={closeMenu}>Calendário</Link>
                 <Link to="/torneio?tab=grupos" onClick={closeMenu}>Grupos</Link>
-                <Link to="/torneio?tab=fases-finais">Fases Finais</Link>
+                <Link to="/torneio?tab=fases-finais" onClick={closeMenu}>Fases Finais</Link>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <span className="nav-item nav-item-disabled" aria-disabled="true">TORNEIO</span>
+          )}
 
           <Link to="/historia" onClick={closeMenu}>HISTÓRIA</Link>
           <Link to="/patrocinadores" onClick={closeMenu}>PATROCINADORES</Link>

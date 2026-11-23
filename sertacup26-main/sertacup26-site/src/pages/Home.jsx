@@ -14,13 +14,11 @@ export default function HomePage() {
       <div className="hero-overlay" />
 
       <div className="hero-content">
-        <div className="hero-title">V SERTÃ CUP</div>
+        <div className="hero-title">SERTÃ CUP</div>
 
         <div className="hero-bottom">
-          <div className="hero-subtitle">25 A 28 JUNHO</div>
-
-          <a className="cta" href="/torneio?tab=calendario">
-            EM DIRETO
+          <a className="cta" href="/inscricao">
+            INSCREVE JÁ A TUA EQUIPA
           </a>
         </div>
       </div>
